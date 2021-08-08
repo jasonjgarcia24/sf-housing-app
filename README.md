@@ -46,7 +46,7 @@ To install <a href="https://github.com/jasonjgarcia24/sf-housing-app" title="htt
 Alternatively, you can navigate to the same address (<code>https://github.com/jasonjgarcia24/san-francisco-housing.git</code>) and download the full <code>main</code> branch's contents as a zip file to your prefered local directory.<br>
 
 ### Setting Environment Variables
-A <code>.env</code> file is required for use with the <a href="https://alpaca.markets/" target="_blank">Alpaca SDK</a>. The Alpaca SDK will check the environment for a number of variables that can be used rather than hard-coding these into your scripts.
+A <code>.env</code> file is required for use with the <a href="https://account.mapbox.com/" target="_blank">Mapbox API</a>. The Mapbox API access token will allow us to utilize the Mapbox geolocation information.
 
 | Environment                                        | Description           |
 | -------------------------------------------------- | --------------------- |
