@@ -42,7 +42,7 @@ The layout of essentials for this project is show below.
 ***
 ## <a id="Installation-Guide">Installation Guide</a>
 ### Project Installation
-To install <a href="https://github.com/jasonjgarcia24/san-francisco-housing" title="https://github.com/jasonjgarcia24/san-francisco-housing">san-francisco-housing</a>, type <code>git clone https://github.com/jasonjgarcia24/san-francisco-housing.git</code> into bash in your prefered local directory.<br><br>
+To install <a href="https://github.com/jasonjgarcia24/sf-housing-app" title="https://github.com/jasonjgarcia24/sf-housing-app">san-francisco-housing</a>, type <code>git clone https://github.com/jasonjgarcia24/sf-housing-app.git</code> into bash in your prefered local directory.<br><br>
 Alternatively, you can navigate to the same address (<code>https://github.com/jasonjgarcia24/san-francisco-housing.git</code>) and download the full <code>main</code> branch's contents as a zip file to your prefered local directory.<br>
 
 ### Setting Environment Variables
