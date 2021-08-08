@@ -82,7 +82,7 @@ Currently just me :)<br>
 
 ***
 ## <a id="License">License</a>
-Each file included in this repository is licensed under the <a href="https://github.com/jasonjgarcia24/san-francisco-housing/blob/main/LICENSE" title="github.com/jasonjgarcia24/san-francisco-housing/blob/main/LICENSE">MIT License.</a>
+Each file included in this repository is licensed under the <a href="https://github.com/jasonjgarcia24/sf-housing-app/blob/665e34a616f2931f3b9262dfb1115b59c28e7ac1/LICENSE" title="LICENSE">MIT License.</a>
 
 ***
 [Top of Page](#Top-of-Page)<br>
