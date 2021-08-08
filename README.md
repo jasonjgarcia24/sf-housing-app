@@ -32,13 +32,11 @@ The layout of essentials for this project is show below.
 ***
 ## <a id="Technologies">Technologies</a>
 <a href="https://docs.python.org/release/3.8.0/" title="https://docs.python.org/release/3.8.0/"><img src="https://img.shields.io/badge/python-3.8%2B-red">
-<a href="https://pandas.pydata.org/docs/" title="https://pandas.pydata.org/docs/"><img src="https://img.shields.io/badge/pandas-1.3.0-green"></a>
-<a href="https://jupyter-notebook.readthedocs.io/en/stable/" title="https://jupyter-notebook.readthedocs.io/en/stable/"><img src="https://img.shields.io/badge/jupyter--notebook-6.4.0-green"></a>
-<a href="https://github.com/theskumar/python-dotenv" title="https://github.com/theskumar/python-dotenv"><img src="https://img.shields.io/badge/python--dotenv-0.18.0-orange"></a>
-<a href="https://pypi.org/project/alpaca-trade-api/" title="https://pypi.org/project/alpaca-trade-api/"><img src="https://img.shields.io/badge/alpaca--trade--api-1.2.3-orange"></a>
-<a href="https://dateutil.readthedocs.io/en/stable/" title="https://dateutil.readthedocs.io/en/stable/"><img src="https://img.shields.io/badge/dateutil-2.8.2-green"></a>
-<a href="https://matplotlib.org/" title="https://matplotlib.org/"><img src="https://img.shields.io/badge/matplotlib-3.3.4-blue"></a>
-<br>
+<a href="https://pandas.pydata.org/docs/" title="https://pandas.pydata.org/docs/"><img src="https://img.shields.io/badge/pandas-1.3.1-green"></a>
+<a href="https://jupyter-notebook.readthedocs.io/en/stable/" title="https://jupyter-notebook.readthedocs.io/en/stable/"><img src="https://img.shields.io/badge/jupyter--notebook-5.7.11-green"></a>
+<a href="https://github.com/theskumar/python-dotenv" title="https://github.com/theskumar/python-dotenv"><img src="https://img.shields.io/badge/python--dotenv-0.19.0-yellowgreen"></a>
+<a href="https://github.com/matplotlib/matplotlib" title="https://github.com/matplotlib/matplotlib"><img src="https://img.shields.io/badge/pyviz-2.1.0-orange"></a>
+<a href="https://dash.plotly.com/" title="https://dash.plotly.com/"><img src="https://img.shields.io/badge/plotly-4.13.0-orange"></a><br>
 <a href="./requirements.txt" title="requirements.txt">Requirements List</a>
 
 ***
@@ -67,14 +65,14 @@ The tools provides four necessary visualizations for price analysis and one extr
 2. A plot of the average sales price per square foot:<br>
 <img src="./img/results_average_sale-prices_pre_square_foot.png" title="Average Sale Price per Square Foot"><br>
 
-3. A projection line chart from a Monte Carlo simulation:<br>
-<img src="./img/monte_carlo_plot_line.png" title="Monte Carlo line plot"><br>
+3. A plot of the average sale prices by neighborhood (with the option to select the neighborhood of interest):<br>
+<img src="./img/results_average_sale-prices_by_neighborhood.png" title="Average Sale Prices by Neighborhood"><br>
 
 4. An interactive map of average gross rent and sale price per square foot using the Mapbox API:<br>
 <img src="./img/results_interactive_neighboorhood_summary_map.png" title="Interactive Neighborhood Summary Map with Mapbox API"><br>
     
 5. **Bonus:** A bar chart summarizing the rate of increase of rental price versus sale price per square foot (blanks=not enough data):<br>
-<img src="./img/results_rate_increase_rental_price_vs_sale_price.png" title="Rate Increase of SF Rental Price vs Sale Pirce/Square Foot"><br>
+<img src="./img/results_rate_increase_rental_price_vs_sale_price.png" title="Rate Increase of Rental Price vs Sale Pirce/Square Foot"><br>
 
 ***
 ## <a id="Contributors">Contributors</a>
