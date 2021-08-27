@@ -1,0 +1,224 @@
+,id,city,latitude,longitude,name,state,county,is_village
+0,123208,Fort Worth,32.895357,-97.448674,The Landing,TX,Tarrant,0
+1,123528,Fort Worth,32.888037,-97.451501,Bal Harbour,TX,Tarrant,0
+2,135751,Fort Worth,32.697791,-97.25873,Village Creek,TX,Tarrant,0
+3,139103,Fort Worth,32.861146,-97.413079,Lake Crest,TX,Tarrant,0
+4,139694,Fort Worth,32.854529,-97.324868,Northbrook,TX,Tarrant,0
+5,161895,Fort Worth,32.641933,-97.287664,Quail Run,TX,Tarrant,0
+6,165841,Fort Worth,32.763611,-97.517178,Silver Ridge,TX,Tarrant,0
+7,172374,Fort Worth,32.767685,-97.374901,Crestwood,TX,Tarrant,0
+8,175145,Fort Worth,32.921251,-97.303073,Sunset Hills,TX,Tarrant,0
+9,183169,Fort Worth,32.7836,-97.35825,North Side,TX,Tarrant,0
+10,199068,Fort Worth,32.771295,-97.22776,Woodhaven,TX,Tarrant,0
+11,199281,Fort Worth,32.740245,-97.386999,Arlington Heights,TX,Tarrant,0
+12,201125,Fort Worth,32.623038,-97.282932,Hamlet,TX,Tarrant,0
+13,207722,Fort Worth,32.631165,-97.343182,Willow Creek,TX,Tarrant,0
+14,215825,Fort Worth,32.67628,-97.365496,South Hills,TX,Tarrant,0
+15,222554,Fort Worth,32.879233,-97.281267,Park Place,TX,Tarrant,0
+16,227740,Fort Worth,32.840537,-97.469116,Lakeland,TX,Tarrant,0
+17,230853,Fort Worth,32.726353,-97.378962,Alamo Heights,TX,Tarrant,0
+18,232889,Fort Worth,32.707075,-97.27091,Eastland,TX,Tarrant,0
+19,233172,Fort Worth,32.72435,-97.337655,Fairmount,TX,Tarrant,0
+20,233495,Fort Worth,32.597341,-97.302835,Garden Acres,TX,Tarrant,0
+21,233841,Fort Worth,32.73693,-97.208074,Handley,TX,Tarrant,0
+22,235015,Fort Worth,32.755126,-97.358009,Linwood,TX,Tarrant,0
+23,236138,Fort Worth,32.78499,-97.314584,Oakhurst,TX,Tarrant,0
+24,238188,Fort Worth,32.704956,-97.381359,Tanglewood,TX,Tarrant,0
+25,238895,Fort Worth,32.724334,-97.499476,Westland,TX,Tarrant,0
+26,248397,Fort Worth,32.753473,-97.497402,Westpoint,TX,Tarrant,0
+27,249106,Fort Worth,32.766207,-97.382342,Brookside,TX,Tarrant,0
+28,249173,Fort Worth,32.583084,-97.330462,Coventry,TX,Tarrant,0
+29,249275,Fort Worth,32.70085,-97.253881,Fairhaven,TX,Tarrant,0
+30,252182,Fort Worth,32.71388,-97.358535,University Place,TX,Tarrant,0
+31,252709,Fort Worth,32.751781,-97.31451,Butler,TX,Tarrant,0
+32,253799,Fort Worth,32.755784,-97.371419,Monticello,TX,Tarrant,0
+33,256252,Fort Worth,32.759882,-97.199836,Harmony,TX,Tarrant,0
+34,256834,Fort Worth,32.712511,-97.522188,Lost Creek,TX,Tarrant,0
+35,256999,Fort Worth,32.628812,-97.363415,Meadow Creek,TX,Tarrant,0
+36,270035,Fort Worth,32.712086,-97.312344,Morningside,TX,Tarrant,0
+37,270099,Fort Worth,32.722061,-97.404045,Como,TX,Tarrant,0
+38,270657,Fort Worth,32.664346,-97.30383,Highland Hills,TX,Tarrant,0
+39,271095,Fort Worth,32.772717,-97.322279,Greenway,TX,Tarrant,0
+40,271631,Fort Worth,32.691911,-97.36726,Westcliff,TX,Tarrant,0
+41,272010,Fort Worth,32.659185,-97.385791,Wedgwood,TX,Tarrant,0
+42,272215,Fort Worth,32.880432,-97.264505,Parkwood Hills,TX,Tarrant,0
+43,274966,Fort Worth,32.718804,-97.357923,Park Hill,TX,Tarrant,0
+44,275252,Fort Worth,32.69162,-97.342364,Rosemont,TX,Tarrant,0
+45,275895,Fort Worth,32.650007,-97.430957,Vista Ridge,TX,Tarrant,0
+46,411938,Fort Worth,32.809268,-97.145274,Lakeview,TX,Tarrant,0
+47,412396,Fort Worth,32.620337,-97.366835,Southgate,TX,Tarrant,0
+48,413210,Fort Worth,32.875767,-97.434085,Highlands,TX,Tarrant,0
+49,415565,Fort Worth,32.882984,-97.440739,Lake Country,TX,Tarrant,0
+50,418206,Fort Worth,32.844279,-97.378325,Remington Point,TX,Tarrant,0
+51,418207,Fort Worth,32.855728,-97.408091,Marine Creek Hills,TX,Tarrant,0
+52,420209,Fort Worth,32.928731,-97.365865,Dorado Ranch,TX,Tarrant,0
+53,420215,Fort Worth,32.866861,-97.309811,Fossil Park,TX,Tarrant,0
+54,420245,Fort Worth,32.967301,-97.262085,Rolling Meadows,TX,Tarrant,0
+55,420247,Fort Worth,32.867567,-97.319591,Santa Fe Enclave,TX,Tarrant,0
+56,420250,Fort Worth,32.989446,-97.386691,Sendera Ranch,TX,Tarrant,0
+57,420258,Fort Worth,32.839113,-97.384965,Terrace Landing,TX,Tarrant,0
+58,421056,Fort Worth,32.92329,-97.26933,Kingsridge,TX,Tarrant,0
+59,421482,Fort Worth,32.767478,-97.205576,Emory Place,TX,Tarrant,0
+60,421863,Fort Worth,32.89772,-97.295938,Arcadia Park,TX,Tarrant,0
+61,422749,Fort Worth,32.857701,-97.32946,Alexandra Meadows,TX,Tarrant,0
+62,422750,Fort Worth,32.646058,-97.282128,Altemesa East,TX,Tarrant,0
+63,422751,Fort Worth,32.871083,-97.263443,Basswood Park,TX,Tarrant,0
+64,422752,Fort Worth,32.876423,-97.322978,Basswood Village,TX,Tarrant,0
+65,422753,Fort Worth,33.021994,-97.296543,Beechwood Creek,TX,Tarrant,0
+66,422754,Fort Worth,32.672381,-97.430474,Bellaire Park North,TX,Tarrant,0
+67,422755,Fort Worth,32.770531,-97.161266,Bently Village,TX,Tarrant,0
+68,422756,Fort Worth,32.721106,-97.349569,Berkeley Place,TX,Tarrant,0
+69,422757,Fort Worth,32.700795,-97.363038,Bluebonnet Hills,TX,Tarrant,0
+70,422758,Fort Worth,32.702588,-97.357454,Bluebonnet Place,TX,Tarrant,0
+71,422759,Fort Worth,32.702975,-97.446537,Bomber Heights,TX,Tarrant,0
+72,422760,Fort Worth,32.802861,-97.299542,Bonnie Brae,TX,Tarrant,0
+73,422761,Fort Worth,32.695035,-97.317171,Brentmoor,TX,Tarrant,0
+74,422762,Fort Worth,32.75301,-97.220084,Brentwood-Oak Hills,TX,Tarrant,0
+75,422763,Fort Worth,32.647196,-97.430391,Briercliff,TX,Tarrant,0
+76,422764,Fort Worth,32.876645,-97.305547,Brittany Place,TX,Tarrant,0
+77,422765,Fort Worth,32.719555,-97.285079,Burchill,TX,Tarrant,0
+78,422766,Fort Worth,32.749537,-97.406755,Burton Hill Trinity Trails,TX,Tarrant,0
+79,422767,Fort Worth,32.703819,-97.351104,Byers McCart,TX,Tarrant,0
+80,422768,Fort Worth,32.640935,-97.386887,Candleridge,TX,Tarrant,0
+81,422769,Fort Worth,32.636285,-97.395688,Candle Ridge West,TX,Tarrant,0
+82,422770,Fort Worth,32.692178,-97.313003,Carter Park,TX,Tarrant,0
+83,422771,Fort Worth,32.779992,-97.294915,Carter Riverside,TX,Tarrant,0
+84,422772,Fort Worth,32.714013,-97.220445,Carver Heights East,TX,Tarrant,0
+85,422773,Fort Worth,32.729869,-97.246884,Caville,TX,Tarrant,0
+86,422774,Fort Worth,32.752301,-97.508803,Central Chapel Creek,TX,Tarrant,0
+87,422775,Fort Worth,32.749351,-97.243749,Central Meadowbrook,TX,Tarrant,0
+88,422776,Fort Worth,33.014048,-97.265137,Chadwick Farms,TX,Tarrant,0
+89,422777,Fort Worth,32.735422,-97.501713,Chapel Creek,TX,Tarrant,0
+90,422778,Fort Worth,32.721029,-97.487345,Chapin   Alemeda,TX,Tarrant,0
+91,422779,Fort Worth,32.86713,-97.41923,Cheyenne Ridge,TX,Tarrant,0
+92,422780,Fort Worth,32.888959,-97.340159,Chisholm Ridge,TX,Tarrant,0
+93,422781,Fort Worth,32.762783,-97.189017,Cobblestone,TX,Tarrant,0
+94,422782,Fort Worth,32.712442,-97.370539,Colonial Hills,TX,Tarrant,0
+95,422783,Fort Worth,32.751789,-97.187984,Cookes Meadow,TX,Tarrant,0
+96,422784,Fort Worth,32.897267,-97.278507,Coventry Hills,TX,Tarrant,0
+97,422785,Fort Worth,32.925747,-97.299226,Crawford Farms,TX,Tarrant,0
+98,422786,Fort Worth,32.74654,-97.388118,Crestline Area,TX,Tarrant,0
+99,422787,Fort Worth,32.610381,-97.325957,Deer Creek North,TX,Tarrant,0
+100,422788,Fort Worth,32.810003,-97.332115,Diamond Hill - Jarvis,TX,Tarrant,0
+101,422789,Fort Worth,32.867782,-97.432861,Eagle Ranch,TX,Tarrant,0
+102,422790,Fort Worth,32.796364,-97.43275,East Lake Worth,TX,Tarrant,0
+103,422791,Fort Worth,32.753387,-97.232744,Eastern Hills,TX,Tarrant,0
+104,422792,Fort Worth,32.704321,-97.260904,Eastwood Pleasant Glade,TX,Tarrant,0
+105,422793,Fort Worth,32.690509,-97.259319,Echo Heights,TX,Tarrant,0
+106,422794,Fort Worth,32.73335,-97.286171,El Poly Pyramid,TX,Tarrant,0
+107,422795,Fort Worth,32.854451,-97.302215,Fairway Bend,TX,Tarrant,0
+108,422796,Fort Worth,32.763934,-97.492545,Falcon Ridge,TX,Tarrant,0
+109,422797,Fort Worth,32.751608,-97.166447,Far East,TX,Tarrant,0
+110,422798,Fort Worth,32.799205,-97.369494,Far Greater Northside,TX,Tarrant,0
+111,422799,Fort Worth,32.635815,-97.379954,Far Southwest,TX,Tarrant,0
+112,422800,Fort Worth,32.847849,-97.422146,Stone Creek Ranch,TX,Tarrant,0
+113,422801,Fort Worth,32.921664,-97.371528,Fossil Hill Estates,TX,Tarrant,0
+114,422802,Fort Worth,32.682787,-97.383421,Foster Park,TX,Tarrant,0
+115,422803,Fort Worth,32.614656,-97.382353,Fox Run,TX,Tarrant,0
+116,422804,Fort Worth,32.711028,-97.354386,Frisco Heights,TX,Tarrant,0
+117,422805,Fort Worth,32.745757,-97.509341,FW Vista West,TX,Tarrant,0
+118,422806,Fort Worth,32.712729,-97.417849,Gardens of Westridge,TX,Tarrant,0
+119,422807,Fort Worth,32.696095,-97.292701,Glencrest,TX,Tarrant,0
+120,422808,Fort Worth,32.740481,-97.306882,Glenwood Triangle,TX,Tarrant,0
+121,422809,Fort Worth,32.832557,-97.418227,Greenfield Acres,TX,Tarrant,0
+122,422810,Fort Worth,32.64379,-97.335022,Hallmark-Camelot,TX,Tarrant,0
+123,422811,Fort Worth,32.708081,-97.420652,Hampton Place,TX,Tarrant,0
+124,422812,Fort Worth,32.892471,-97.451899,Harbour Points,TX,Tarrant,0
+125,422813,Fort Worth,32.75019,-97.207398,Ryanwood,TX,Tarrant,0
+126,422814,Fort Worth,33.040315,-97.316939,Harriet Creek Ranch,TX,Tarrant,0
+127,422815,Fort Worth,32.967362,-97.268003,Harvest Ridge,TX,Tarrant,0
+128,422816,Fort Worth,32.900741,-97.275281,Heights of Park Vista,TX,Tarrant,0
+129,422817,Fort Worth,32.910278,-97.295731,Heritage Glen,TX,Tarrant,0
+130,422818,Fort Worth,32.910979,-97.289699,Heritage,TX,Tarrant,0
+131,422819,Fort Worth,32.725094,-97.311846,Hillside Morningside,TX,Tarrant,0
+132,422820,Fort Worth,32.725206,-97.229756,Carver Heights,TX,Tarrant,0
+133,422821,Fort Worth,32.738028,-97.31171,Historic Southside,TX,Tarrant,0
+134,422822,Fort Worth,32.741803,-97.176708,Hollow Hills,TX,Tarrant,0
+135,422823,Fort Worth,32.681005,-97.338454,Hubbard Heights,TX,Tarrant,0
+136,422824,Fort Worth,32.654227,-97.412004,Hulen Bend Estates,TX,Tarrant,0
+137,422825,Fort Worth,32.625744,-97.394141,Hulen Heights,TX,Tarrant,0
+138,422826,Fort Worth,32.824454,-97.426345,Jenkins Heights - Crest Ridge,TX,Tarrant,0
+139,422827,Fort Worth,32.711254,-97.329252,Jennings - May St. Louis,TX,Tarrant,0
+140,422828,Fort Worth,32.770922,-97.182489,John T White,TX,Tarrant,0
+141,422829,Fort Worth,32.804827,-97.19377,Lake of River Trails,TX,Tarrant,0
+142,422830,Fort Worth,32.747314,-97.191959,Lakewood Addition,TX,Tarrant,0
+143,422831,Fort Worth,32.825275,-97.405301,Marine Creek,TX,Tarrant,0
+144,422832,Fort Worth,32.842365,-97.40983,Marine Creek Ranch,TX,Tarrant,0
+145,422833,Fort Worth,32.779584,-97.345974,Marine Park,TX,Tarrant,0
+146,422834,Fort Worth,32.630956,-97.395502,Meadows of Candleridge,TX,Tarrant,0
+147,422835,Fort Worth,32.677955,-97.428318,Meadows West,TX,Tarrant,0
+148,422836,Fort Worth,32.657835,-97.437275,Mira Vista,TX,Tarrant,0
+149,422837,Fort Worth,32.729915,-97.352283,Mistletoe Heights,TX,Tarrant,0
+150,422838,Fort Worth,32.713162,-97.287453,Mitchell Boulevard,TX,Tarrant,0
+151,422839,Fort Worth,32.701308,-97.312469,Morningside Park,TX,Tarrant,0
+152,422840,Fort Worth,32.745589,-97.311278,Near East Side,TX,Tarrant,0
+153,422841,Fort Worth,32.788818,-97.473501,South Lake Worth,TX,Tarrant,0
+154,422842,Fort Worth,32.79566,-97.392124,North Beverly Hills,TX,Tarrant,0
+155,422843,Fort Worth,32.666657,-97.338453,North Greenbriar,TX,Tarrant,0
+156,422844,Fort Worth,32.748024,-97.374967,North Hi Mount,TX,Tarrant,0
+157,422845,Fort Worth,32.809686,-97.452264,North Lake Worth,TX,Tarrant,0
+158,422846,Fort Worth,32.675237,-97.30412,Oakridge Terrace,TX,Tarrant,0
+159,422847,Fort Worth,32.691542,-97.386099,Overton Park,TX,Tarrant,0
+160,422848,Fort Worth,32.670142,-97.391763,Overton South,TX,Tarrant,0
+161,422849,Fort Worth,32.695631,-97.394656,Overton West,TX,Tarrant,0
+162,422850,Fort Worth,32.699037,-97.395549,Overton Woods,TX,Tarrant,0
+163,422851,Fort Worth,32.594826,-97.406917,Panther Heights,TX,Tarrant,0
+164,422852,Fort Worth,32.879626,-97.277283,Park Glen,TX,Tarrant,0
+165,422853,Fort Worth,32.648798,-97.413733,Park Palisades,TX,Tarrant,0
+166,422854,Fort Worth,32.85805,-97.399903,Parkview Hills,TX,Tarrant,0
+167,422855,Fort Worth,32.711002,-97.348055,Paschal,TX,Tarrant,0
+168,422856,Fort Worth,32.609758,-97.382348,Poynter Crossing,TX,Tarrant,0
+169,422857,Fort Worth,32.649417,-97.424528,Quail Ridge,TX,Tarrant,0
+170,422858,Fort Worth,32.718862,-97.227673,Ramey Place,TX,Tarrant,0
+171,422859,Fort Worth,32.693123,-97.43023,Ridglea Country Club,TX,Tarrant,0
+172,422860,Fort Worth,32.713182,-97.426742,Ridglea Hills,TX,Tarrant,0
+173,422861,Fort Worth,32.712906,-97.414329,Ridglea,TX,Tarrant,0
+174,422862,Fort Worth,32.726113,-97.419377,Ridglea North,TX,Tarrant,0
+175,422863,Fort Worth,32.744685,-97.425151,Ridgmar,TX,Tarrant,0
+176,422864,Fort Worth,32.798347,-97.186554,River Trails,TX,Tarrant,0
+177,422865,Fort Worth,32.756072,-97.39813,Riverbend,TX,Tarrant,0
+178,422866,Fort Worth,32.770029,-97.32824,Rock Island - Samuels,TX,Tarrant,0
+179,422867,Fort Worth,32.712108,-97.339674,Ryan Place,TX,Tarrant,0
+180,422868,Fort Worth,32.771817,-97.20854,Sandybrook,TX,Tarrant,0
+181,422869,Fort Worth,32.773644,-97.310948,Scenic Bluff,TX,Tarrant,0
+182,422870,Fort Worth,32.819219,-97.460313,Scenic Shores,TX,Tarrant,0
+183,422871,Fort Worth,32.702339,-97.337224,Shaw Clarke,TX,Tarrant,0
+184,422872,Fort Worth,32.710571,-97.254194,South Edgewood,TX,Tarrant,0
+185,422873,Fort Worth,32.709443,-97.335217,South Hemphill Heights,TX,Tarrant,0
+186,422874,Fort Worth,32.638846,-97.356361,South Meadows Crossing,TX,Tarrant,0
+187,422875,Fort Worth,32.716662,-97.271449,South Poly,TX,Tarrant,0
+188,422876,Fort Worth,32.675636,-97.313498,Southland Terrace,TX,Tarrant,0
+189,422877,Fort Worth,32.862627,-97.275978,Sterling Creek,TX,Tarrant,0
+190,422878,Fort Worth,32.621207,-97.394586,Stone Meadow,TX,Tarrant,0
+191,422879,Fort Worth,32.72149,-97.252804,Stop Six,TX,Tarrant,0
+192,422880,Fort Worth,32.71488,-97.242967,Stop Six Sunrise Edition,TX,Tarrant,0
+193,422881,Fort Worth,32.624988,-97.404057,Summer Creek,TX,Tarrant,0
+194,422882,Fort Worth,32.875809,-97.292084,Summerfields,TX,Tarrant,0
+195,422883,Fort Worth,32.720549,-97.391294,Sunset Heights South,TX,Tarrant,0
+196,422884,Fort Worth,32.742305,-97.347672,Sunset Terrace,TX,Tarrant,0
+197,422885,Fort Worth,32.787569,-97.305047,Sylvan Heights West,TX,Tarrant,0
+198,422886,Fort Worth,32.770007,-97.505628,Tejas Trails,TX,Tarrant,0
+199,422887,Fort Worth,32.727272,-97.228002,Bunch-Ellington,TX,Tarrant,0
+200,422888,Fort Worth,32.851279,-97.320221,The Crossing of Fossil Creek,TX,Tarrant,0
+201,422889,Fort Worth,32.958581,-97.276141,McPherson Ranch,TX,Tarrant,0
+202,422890,Fort Worth,32.599601,-97.324786,The Parks of Deer Creek,TX,Tarrant,0
+203,422891,Fort Worth,32.979732,-97.284711,The Ranches,TX,Tarrant,0
+204,422892,Fort Worth,32.913499,-97.418709,The Trails of Fossil Creek,TX,Tarrant,0
+205,422893,Fort Worth,32.855241,-97.423262,The Trails of Marine Creek,TX,Tarrant,0
+206,422894,Fort Worth,32.902637,-97.268193,The Vineyards at Heritage,TX,Tarrant,0
+207,422895,Fort Worth,32.897282,-97.283323,Trace Ridge,TX,Tarrant,0
+208,422896,Fort Worth,32.759305,-97.306756,United Riverside,TX,Tarrant,0
+209,422897,Fort Worth,32.716133,-97.365626,University West,TX,Tarrant,0
+210,422898,Fort Worth,32.750795,-97.339797,Upper West Side,TX,Tarrant,0
+211,422899,Fort Worth,32.712233,-97.381315,Villages of Stonegate,TX,Tarrant,0
+212,422900,Fort Worth,32.947312,-97.284241,Villages of Woodland Springs,TX,Tarrant,0
+213,422901,Fort Worth,32.924832,-97.288016,Vista Meadows,TX,Tarrant,0
+214,422902,Fort Worth,32.678131,-97.23099,Waterview at Enchanted Bay,TX,Tarrant,0
+215,422903,Fort Worth,32.736841,-97.400299,West Byers,TX,Tarrant,0
+216,422904,Fort Worth,32.736956,-97.413826,Westridge Area,TX,Tarrant,0
+217,422905,Fort Worth,32.746358,-97.278464,West Meadowbrook,TX,Tarrant,0
+218,422906,Fort Worth,32.71602,-97.324541,West Morningside,TX,Tarrant,0
+219,422907,Fort Worth,32.693188,-97.374989,Westcliff West,TX,Tarrant,0
+220,422908,Fort Worth,32.729528,-97.458784,Western Hills North,TX,Tarrant,0
+221,422909,Fort Worth,32.764567,-97.254084,White Lake Hills,TX,Tarrant,0
+222,422910,Fort Worth,32.695147,-97.326186,Worth Heights,TX,Tarrant,0

@@ -1,0 +1,90 @@
+,id,city,latitude,longitude,name,state,county,is_village
+0,35760,San Francisco,37.799173,-122.466113,Presidio,CA,San Francisco,0
+1,114291,San Francisco,37.7937,-122.406245,Chinatown,CA,San Francisco,0
+2,115133,San Francisco,37.756786,-122.457983,Forest Knolls,CA,San Francisco,0
+3,115774,San Francisco,37.720427,-122.455215,Ingleside,CA,San Francisco,0
+4,116918,San Francisco,37.801635,-122.412922,North Beach,CA,San Francisco,0
+5,117447,San Francisco,37.726699,-122.412147,Portola,CA,San Francisco,0
+6,117654,San Francisco,37.778349,-122.482161,Central Richmond,CA,San Francisco,0
+7,118310,San Francisco,37.722015,-122.479033,Stonestown,CA,San Francisco,0
+8,118904,San Francisco,37.781412,-122.43151,Western Addition,CA,San Francisco,0
+9,207518,San Francisco,37.786623,-122.392835,South Beach,CA,San Francisco,0
+10,223174,San Francisco,37.736795,-122.457719,Sherwood Forest,CA,San Francisco,0
+11,227971,San Francisco,37.77837,-122.452673,Lone Mountain,CA,San Francisco,0
+12,251072,San Francisco,37.726045,-122.473455,Lakeside,CA,San Francisco,0
+13,255961,San Francisco,37.748126,-122.464635,Forest Hill,CA,San Francisco,0
+14,256657,San Francisco,37.786511,-122.473319,Lake,CA,San Francisco,0
+15,268020,San Francisco,37.740357,-122.419694,Bernal Heights,CA,San Francisco,0
+16,268096,San Francisco,37.79801,-122.435794,Cow Hollow,CA,San Francisco,0
+17,268110,San Francisco,37.741091,-122.443662,Diamond Heights,CA,San Francisco,0
+18,268114,San Francisco,37.787262,-122.412045,Downtown,CA,San Francisco,0
+19,268150,San Francisco,37.72189,-122.429767,Excelsior,CA,San Francisco,0
+20,268156,San Francisco,37.793955,-122.39983,Financial District,CA,San Francisco,0
+21,268177,San Francisco,37.736985,-122.432888,Glen Park,CA,San Francisco,0
+22,268201,San Francisco,37.768094,-122.448285,Haight Ashbury,CA,San Francisco,0
+23,268206,San Francisco,37.77439,-122.429704,Hayes Valley,CA,San Francisco,0
+24,268218,San Francisco,37.730345,-122.372869,Hunters Point,CA,San Francisco,0
+25,268219,San Francisco,37.779438,-122.465502,Inner Richmond,CA,San Francisco,0
+26,268220,San Francisco,37.759409,-122.467484,Inner Sunset,CA,San Francisco,0
+27,268303,San Francisco,37.739715,-122.451088,Miraloma Park,CA,San Francisco,0
+28,268305,San Francisco,37.77166,-122.389582,Mission Bay,CA,San Francisco,0
+29,268337,San Francisco,37.79403,-122.415528,Nob Hill,CA,San Francisco,0
+30,268338,San Francisco,37.748283,-122.434634,Noe Valley,CA,San Francisco,0
+31,268382,San Francisco,37.714706,-122.454896,Outer Mission,CA,San Francisco,0
+32,268383,San Francisco,37.779925,-122.504743,Outer Richmond,CA,San Francisco,0
+33,268384,San Francisco,37.75783,-122.503735,Outer Sunset,CA,San Francisco,0
+34,268385,San Francisco,37.792469,-122.435078,Pacific Heights,CA,San Francisco,0
+35,268396,San Francisco,37.743211,-122.485192,Parkside,CA,San Francisco,0
+36,268414,San Francisco,37.758025,-122.398759,Potrero Hill,CA,San Francisco,0
+37,268419,San Francisco,37.78891,-122.45498,Presidio Heights,CA,San Francisco,0
+38,268450,San Francisco,37.803203,-122.419146,Russian Hill,CA,San Francisco,0
+39,268462,San Francisco,37.787094,-122.488781,Sea Cliff,CA,San Francisco,0
+40,268491,San Francisco,37.774971,-122.406849,South of Market,CA,San Francisco,0
+41,268517,San Francisco,37.802065,-122.406274,Telegraph Hill,CA,San Francisco,0
+42,268570,San Francisco,37.715079,-122.41348,Visitacion Valley,CA,San Francisco,0
+43,272885,San Francisco,37.729195,-122.39123,Bayview,CA,San Francisco,0
+44,273404,San Francisco,37.712301,-122.438896,Crocker Amazon,CA,San Francisco,0
+45,274246,San Francisco,37.72185,-122.489908,Lakeshore,CA,San Francisco,0
+46,274422,San Francisco,37.804796,-122.43627,Marina,CA,San Francisco,0
+47,274552,San Francisco,37.759918,-122.415902,Mission,CA,San Francisco,0
+48,274872,San Francisco,37.714349,-122.456112,Oceanview,CA,San Francisco,0
+49,275789,San Francisco,37.752889,-122.444906,Twin Peaks,CA,San Francisco,0
+50,403147,San Francisco,37.76935,-122.483139,Golden Gate Park,CA,San Francisco,0
+51,415247,San Francisco,37.728669,-122.444477,Sunnyside,CA,San Francisco,0
+52,417492,San Francisco,37.805021,-122.407662,North Waterfront,CA,San Francisco,0
+53,417493,San Francisco,37.783644,-122.415056,Tenderloin,CA,San Francisco,0
+54,417494,San Francisco,37.726361,-122.467359,Ingleside Terrace,CA,San Francisco,0
+55,417495,San Francisco,37.76286,-122.451855,Ashbury Heights,CA,San Francisco,0
+56,417496,San Francisco,37.724339,-122.43815,Mission Terrace,CA,San Francisco,0
+57,417497,San Francisco,37.758542,-122.486151,Central Sunset,CA,San Francisco,0
+58,417498,San Francisco,37.751378,-122.453234,Midtown Terrace,CA,San Francisco,0
+59,417499,San Francisco,37.760814,-122.4352,The Castro,CA,San Francisco,0
+60,417500,San Francisco,37.78182,-122.418642,Civic Center,CA,San Francisco,0
+61,417501,San Francisco,37.78623,-122.435743,Lower Pacific Heights,CA,San Francisco,0
+62,417502,San Francisco,37.78418,-122.401588,Yerba Buena,CA,San Francisco,0
+63,417503,San Francisco,37.73606,-122.48338,Pine Lake Park,CA,San Francisco,0
+64,417504,San Francisco,37.732954,-122.478504,Merced Manor,CA,San Francisco,0
+65,417505,San Francisco,37.71981,-122.467679,Merced Heights,CA,San Francisco,0
+66,417506,San Francisco,37.739277,-122.46742,West Portal,CA,San Francisco,0
+67,417507,San Francisco,37.713096,-122.467645,Ingleside Heights,CA,San Francisco,0
+68,417508,San Francisco,37.730801,-122.467849,Balboa Terrace,CA,San Francisco,0
+69,417509,San Francisco,37.72812,-122.463229,Mount Davidson Manor,CA,San Francisco,0
+70,417510,San Francisco,37.7273,-122.456204,Westwood Park,CA,San Francisco,0
+71,417511,San Francisco,37.736355,-122.465289,St. Francis Wood,CA,San Francisco,0
+72,417512,San Francisco,37.732905,-122.461382,Monterey Heights,CA,San Francisco,0
+73,417513,San Francisco,37.734391,-122.455563,Westwood Highlands,CA,San Francisco,0
+74,417514,San Francisco,37.743945,-122.457764,Forest Hill Extension,CA,San Francisco,0
+75,417515,San Francisco,37.745061,-122.473264,Inner Parkside,CA,San Francisco,0
+76,417516,San Francisco,37.753195,-122.470078,Golden Gate Heights,CA,San Francisco,0
+77,417517,San Francisco,37.742737,-122.50216,Outer Parkside,CA,San Francisco,0
+78,417518,San Francisco,37.76619,-122.430959,Duboce Triangle,CA,San Francisco,0
+79,417519,San Francisco,37.762764,-122.440979,Corona Heights,CA,San Francisco,0
+80,417520,San Francisco,37.78426,-122.452504,Laurel Heights,CA,San Francisco,0
+81,417521,San Francisco,37.78095,-122.443179,Anza Vista,CA,San Francisco,0
+82,417522,San Francisco,37.775355,-122.446049,North Panhandle,CA,San Francisco,0
+83,417523,San Francisco,37.77627,-122.433874,Alamo Square,CA,San Francisco,0
+84,417524,San Francisco,37.768292,-122.440494,Buena Vista Park,CA,San Francisco,0
+85,417525,San Francisco,37.758725,-122.449315,Clarendon Heights,CA,San Francisco,0
+86,417526,San Francisco,37.757118,-122.385091,Dogpatch,CA,San Francisco,0
+87,417527,San Francisco,37.733365,-122.399498,Silver Terrace,CA,San Francisco,0
+88,417528,San Francisco,37.712132,-122.400086,Little Hollywood,CA,San Francisco,0

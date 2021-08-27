@@ -1,0 +1,228 @@
+,id,city,latitude,longitude,name,state,county,is_village
+0,7930,Chicago,41.906824,-87.677278,Wicker Park,IL,Cook County,0
+1,28173,Chicago,41.928408,-87.756258,Cragin,IL,Cook County,0
+2,33420,Chicago,41.852318,-87.655448,Pilsen,IL,Cook County,0
+3,33597,Chicago,41.968722,-87.685219,Ravenswood,IL,Cook County,0
+4,51847,Chicago,41.995343,-87.758759,Edgebrook,IL,Cook County,0
+5,137228,Chicago,41.654197,-87.598579,Altgeld Gardens,IL,Cook County,0
+6,137603,Chicago,41.921271,-87.672429,Bucktown,IL,Cook County,0
+7,137634,Chicago,41.729295,-87.600558,Burnside,IL,Cook County,0
+8,137799,Chicago,41.850016,-87.637169,Chinatown,IL,Cook County,0
+9,137841,Chicago,41.77927,-87.778826,Clearing (W),IL,Cook County,0
+10,138129,Chicago,41.952651,-87.796669,Dunning,IL,Cook County,0
+11,138166,Chicago,41.703594,-87.534651,East Side,IL,Cook County,0
+12,138261,Chicago,41.776143,-87.644802,Englewood,IL,Cook County,0
+13,138732,Chicago,41.683521,-87.556598,Hegewisch,IL,Cook County,0
+14,139408,Chicago,41.833761,-87.67525,McKinley Park,IL,Cook County,0
+15,140000,Chicago,41.84334,-87.611893,Prairie Shores,IL,Cook County,0
+16,140024,Chicago,41.688436,-87.605376,Pullman,IL,Cook County,0
+17,140292,Chicago,41.986301,-87.738209,Sauganash,IL,Cook County,0
+18,140437,Chicago,41.737386,-87.557379,South Chicago,IL,Cook County,0
+19,140440,Chicago,41.709162,-87.559857,South Deering,IL,Cook County,0
+20,140913,Chicago,41.671431,-87.636875,West Pullman,IL,Cook County,0
+21,269566,Chicago,41.96474,-87.713184,Albany Park,IL,Cook County,0
+22,269567,Chicago,41.979764,-87.669039,Andersonville,IL,Cook County,0
+23,269568,Chicago,41.83437,-87.725183,Archer Heights,IL,Cook County,0
+24,269570,Chicago,41.74822,-87.704459,Ashburn,IL,Cook County,0
+25,269571,Chicago,41.743345,-87.657131,Gresham,IL,Cook County,0
+26,269572,Chicago,41.747711,-87.59221,Avalon Park,IL,Cook County,0
+27,269573,Chicago,41.93724,-87.705233,Avondale,IL,Cook County,0
+28,269576,Chicago,41.782586,-87.69821,Chicago Lawn,IL,Cook County,0
+29,269577,Chicago,41.884698,-87.711007,East Garfield Park,IL,Cook County,0
+30,269578,Chicago,41.990666,-87.667523,Edgewater,IL,Cook County,0
+31,269579,Chicago,42.007842,-87.814304,Edison Park,IL,Cook County,0
+32,269580,Chicago,41.979441,-87.752106,Forest Glen,IL,Cook County,0
+33,269581,Chicago,41.808989,-87.633303,Fuller Park,IL,Cook County,0
+34,269582,Chicago,41.795342,-87.696696,Gage Park,IL,Cook County,0
+35,269584,Chicago,41.788081,-87.771853,Garfield Ridge,IL,Cook County,0
+36,269585,Chicago,41.902836,-87.706614,Humboldt Park,IL,Cook County,0
+37,269586,Chicago,41.794088,-87.596527,Hyde Park,IL,Cook County,0
+38,269587,Chicago,41.952955,-87.711134,Irving Park,IL,Cook County,0
+39,269588,Chicago,41.97863,-87.767681,Jefferson Park,IL,Cook County,0
+40,269589,Chicago,41.943511,-87.668225,Lake View,IL,Cook County,0
+41,269590,Chicago,41.918651,-87.638259,Lincoln Park,IL,Cook County,0
+42,269591,Chicago,41.969,-87.688949,Lincoln Square,IL,Cook County,0
+43,269592,Chicago,41.924549,-87.707228,Logan Square,IL,Cook County,0
+44,269593,Chicago,41.882393,-87.62586,Chicago Loop,IL,Cook County,0
+45,269595,Chicago,41.687719,-87.661738,Morgan Park,IL,Cook County,0
+46,269596,Chicago,41.693864,-87.716149,Mount Greenwood,IL,Cook County,0
+47,269597,Chicago,41.895824,-87.631525,Near North,IL,Cook County,0
+48,269599,Chicago,41.879471,-87.672349,Near West Side,IL,Cook County,0
+49,269600,Chicago,41.954132,-87.681156,North Center,IL,Cook County,0
+50,269602,Chicago,41.99173,-87.792199,Norwood Park East,IL,Cook County,0
+51,269603,Chicago,41.963366,-87.842534,O'Hare,IL,Cook County,0
+52,269605,Chicago,42.010501,-87.669688,Rogers Park,IL,Cook County,0
+53,269607,Chicago,41.856991,-87.625699,South Loop,IL,Cook County,0
+54,269608,Chicago,41.76266,-87.563426,South Shore,IL,Cook County,0
+55,269609,Chicago,41.967993,-87.650121,Uptown,IL,Cook County,0
+56,269610,Chicago,41.707112,-87.650721,Washington Heights,IL,Cook County,0
+57,269611,Chicago,41.794817,-87.725573,West Elsdon,IL,Cook County,0
+58,269612,Chicago,41.775721,-87.67374,West Englewood,IL,Cook County,0
+59,269613,Chicago,41.883515,-87.735504,West Garfield Park,IL,Cook County,0
+60,269614,Chicago,41.7716,-87.727276,West Lawn,IL,Cook County,0
+61,269615,Chicago,41.888978,-87.671228,West Town,IL,Cook County,0
+62,272951,Chicago,41.72352,-87.673739,Beverly,IL,Cook County,0
+63,273035,Chicago,41.83618,-87.648296,Bridgeport,IL,Cook County,0
+64,273040,Chicago,41.820708,-87.699016,Brighton Park,IL,Cook County,0
+65,273111,Chicago,41.729755,-87.571982,Calumet Heights,IL,Cook County,0
+66,273222,Chicago,41.747363,-87.61509,Chatham,IL,Cook County,0
+67,273964,Chicago,41.917002,-87.736263,Hermosa,IL,Cook County,0
+68,274178,Chicago,41.806817,-87.591916,Kenwood,IL,Cook County,0
+69,274579,Chicago,41.927732,-87.795964,Montclare,IL,Cook County,0
+70,274850,Chicago,41.824073,-87.601449,Oakland,IL,Cook County,0
+71,275083,Chicago,41.951259,-87.766817,Portage Park,IL,Cook County,0
+72,275192,Chicago,41.6473,-87.616257,Riverdale,IL,Cook County,0
+73,275251,Chicago,41.703423,-87.622657,Roseland,IL,Cook County,0
+74,275927,Chicago,41.791015,-87.6159,Washington Park,IL,Cook County,0
+75,276138,Chicago,41.779689,-87.586095,Woodlawn,IL,Cook County,0
+76,276349,Chicago,41.76221,-87.595738,Grand Crossing,IL,Cook County,0
+77,276477,Chicago,41.977341,-87.716333,North Park,IL,Cook County,0
+78,403109,Chicago,41.929257,-87.775853,Belmont Central,IL,Cook County,0
+79,403117,Chicago,41.838365,-87.715089,Little Village,IL,Cook County,0
+80,403120,Chicago,41.886556,-87.760031,South Austin,IL,Cook County,0
+81,403128,Chicago,41.743403,-87.577194,Stony Island Park,IL,Cook County,0
+82,403141,Chicago,41.868138,-87.65558,University Village - Little Italy,IL,Cook County,0
+83,403144,Chicago,41.834876,-87.611018,Lake Meadows,IL,Cook County,0
+84,403145,Chicago,41.824904,-87.617388,Bronzeville,IL,Cook County,0
+85,403146,Chicago,41.808604,-87.659936,Back of the Yards,IL,Cook County,0
+86,403148,Chicago,41.768105,-87.697919,Marquette Park,IL,Cook County,0
+87,403151,Chicago,41.746316,-87.692415,Wrightwood,IL,Cook County,0
+88,403159,Chicago,41.979538,-87.901073,O'Hare International Airport,IL,Cook County,0
+89,403168,Chicago,41.97743,-87.815735,Oriole Park,IL,Cook County,0
+90,403169,Chicago,42.002459,-87.696526,West Rogers Park,IL,Cook County,0
+91,403255,Chicago,41.986693,-87.694344,Arcadia Terrace,IL,Cook County,0
+92,403256,Chicago,41.987281,-87.704213,Peterson Park,IL,Cook County,0
+93,403257,Chicago,41.987326,-87.653813,Edgewater Beach,IL,Cook County,0
+94,403258,Chicago,41.992561,-87.665239,Edgewater Glen,IL,Cook County,0
+95,403259,Chicago,41.987164,-87.665074,Magnolia Glen,IL,Cook County,0
+96,403260,Chicago,41.979877,-87.661819,Lakewood - Balmoral,IL,Cook County,0
+97,403261,Chicago,41.963488,-87.694532,Ravenswood Gardens,IL,Cook County,0
+98,403262,Chicago,41.979403,-87.697889,Budlong Woods,IL,Cook County,0
+99,403263,Chicago,41.983319,-87.681974,Bowmanville,IL,Cook County,0
+100,403264,Chicago,41.958541,-87.648898,Buena Park,IL,Cook County,0
+101,403265,Chicago,41.965331,-87.663518,Sheridan Park,IL,Cook County,0
+102,403266,Chicago,41.973349,-87.649563,Margate Park,IL,Cook County,0
+103,403267,Chicago,41.958024,-87.663051,Graceland West,IL,Cook County,0
+104,403268,Chicago,41.986485,-87.717785,Hollywood Park,IL,Cook County,0
+105,403269,Chicago,41.993604,-87.718993,Pulaski Park,IL,Cook County,0
+106,403270,Chicago,41.983747,-87.730194,Brynford Park,IL,Cook County,0
+107,403271,Chicago,41.975253,-87.738033,North Mayfair,IL,Cook County,0
+108,403272,Chicago,41.980776,-87.736846,Sauganash Woods,IL,Cook County,0
+109,403273,Chicago,41.977716,-87.736863,River's Edge,IL,Cook County,0
+110,403274,Chicago,41.994321,-87.767974,Old Edgebrook,IL,Cook County,0
+111,403275,Chicago,42.001393,-87.775377,Wildwood,IL,Cook County,0
+112,403276,Chicago,41.990038,-87.815304,Norwood Park West,IL,Cook County,0
+113,403277,Chicago,41.989642,-87.794502,Old Norwood Park,IL,Cook County,0
+114,403278,Chicago,41.979114,-87.797282,Union Ridge,IL,Cook County,0
+115,403279,Chicago,41.971855,-87.797465,Big Oaks,IL,Cook County,0
+116,403280,Chicago,41.962912,-87.841664,Schorsch Forest View,IL,Cook County,0
+117,403281,Chicago,41.952028,-87.82792,Irving Woods,IL,Cook County,0
+118,403282,Chicago,41.941216,-87.83136,Belmont Terrace,IL,Cook County,0
+119,403283,Chicago,41.943447,-87.816538,Belmont Heights,IL,Cook County,0
+120,403284,Chicago,41.941744,-87.796409,Schorsch Village,IL,Cook County,0
+121,403285,Chicago,41.980973,-87.773154,Gladstone Park,IL,Cook County,0
+122,403286,Chicago,41.96442,-87.737612,Mayfair,IL,Cook County,0
+123,403287,Chicago,41.942452,-87.737031,Kilbourn Park,IL,Cook County,0
+124,403288,Chicago,41.955155,-87.737366,Old Irving Park,IL,Cook County,0
+125,403289,Chicago,41.949058,-87.722908,The Villa,IL,Cook County,0
+126,403290,Chicago,41.964857,-87.699268,Ravenswood Manor,IL,Cook County,0
+127,403291,Chicago,41.953999,-87.693379,Horner Park,IL,Cook County,0
+128,403292,Chicago,41.943195,-87.678442,Roscoe Village,IL,Cook County,0
+129,403293,Chicago,41.957876,-87.671466,South East Ravenswood,IL,Cook County,0
+130,403294,Chicago,41.947809,-87.65553,Wrigleyville,IL,Cook County,0
+131,403295,Chicago,41.943076,-87.640085,Lake View East,IL,Cook County,0
+132,403296,Chicago,41.93047,-87.676095,Lathrop Homes,IL,Cook County,0
+133,403297,Chicago,41.894402,-87.650417,River West,IL,Cook County,0
+134,403298,Chicago,41.903617,-87.654007,Goose Island,IL,Cook County,0
+135,403299,Chicago,41.890333,-87.611529,Streeterville,IL,Cook County,0
+136,403300,Chicago,41.891747,-87.63743,River North,IL,Cook County,0
+137,403301,Chicago,41.907443,-87.637414,Old Town,IL,Cook County,0
+138,403302,Chicago,41.900126,-87.640933,Cabrini Green,IL,Cook County,0
+139,403303,Chicago,41.90595,-87.629635,Gold Coast,IL,Cook County,0
+140,403304,Chicago,41.914799,-87.632214,Old Town Triangle,IL,Cook County,0
+141,403305,Chicago,41.914481,-87.656148,Ranch Triangle,IL,Cook County,0
+142,403306,Chicago,41.921239,-87.661377,Sheffield Neighbors,IL,Cook County,0
+143,403307,Chicago,41.928963,-87.65616,Wrightwood Neighbors,IL,Cook County,0
+144,403308,Chicago,41.92919,-87.639256,Park West,IL,Cook County,0
+145,403309,Chicago,41.928816,-87.66584,West De Paul,IL,Cook County,0
+146,403310,Chicago,41.90336,-87.663025,Noble Square,IL,Cook County,0
+147,403311,Chicago,41.899625,-87.67231,East Ukrainian Village,IL,Cook County,0
+148,403312,Chicago,41.899466,-87.68205,Ukrainian Village,IL,Cook County,0
+149,403313,Chicago,41.889185,-87.645521,Fulton River District,IL,Cook County,0
+150,403314,Chicago,41.92109,-87.697875,Palmer Square,IL,Cook County,0
+151,403315,Chicago,41.931487,-87.744178,Kelvin Park,IL,Cook County,0
+152,403316,Chicago,41.943688,-87.731297,South Old Irving Park,IL,Cook County,0
+153,403317,Chicago,41.931613,-87.734376,Belmont Gardens,IL,Cook County,0
+154,403318,Chicago,41.902354,-87.735967,West Humboldt Park,IL,Cook County,0
+155,403319,Chicago,41.87739,-87.71082,Fifth City,IL,Cook County,0
+156,403320,Chicago,41.878769,-87.646994,Greektown,IL,Cook County,0
+157,403321,Chicago,41.871257,-87.67949,Tri-Taylor,IL,Cook County,0
+158,403322,Chicago,41.880646,-87.641517,West Loop Gate,IL,Cook County,0
+159,403323,Chicago,41.909213,-87.760686,North Austin,IL,Cook County,0
+160,403324,Chicago,41.919747,-87.760868,Hanson Park,IL,Cook County,0
+161,403325,Chicago,41.916147,-87.790697,Galewood,IL,Cook County,0
+162,403326,Chicago,41.868277,-87.769192,The Island,IL,Cook County,0
+163,403327,Chicago,41.870195,-87.712633,Homan Square,IL,Cook County,0
+164,403328,Chicago,41.866719,-87.676121,Illinois Medical District,IL,Cook County,0
+165,403329,Chicago,41.84846,-87.684306,Heart of Italy,IL,Cook County,0
+166,403330,Chicago,41.848941,-87.675813,Heart of Chicago,IL,Cook County,0
+167,403331,Chicago,41.856319,-87.642615,East Pilsen,IL,Cook County,0
+168,403332,Chicago,41.785527,-87.749876,Chicago Midway Airport,IL,Cook County,0
+169,403333,Chicago,41.802304,-87.747891,Vittum Park,IL,Cook County,0
+170,403334,Chicago,41.813214,-87.74813,LeClaire Courts,IL,Cook County,0
+171,403335,Chicago,41.813959,-87.74084,Sleepy Hollow,IL,Cook County,0
+172,403336,Chicago,41.776432,-87.751809,Chrysler Village,IL,Cook County,0
+173,403337,Chicago,41.77649,-87.744547,Clearing (E),IL,Cook County,0
+174,403338,Chicago,41.760522,-87.732056,Ford City,IL,Cook County,0
+175,403339,Chicago,41.767245,-87.688146,Lithuanian Plaza,IL,Cook County,0
+176,403340,Chicago,41.814352,-87.640985,Canaryville,IL,Cook County,0
+177,403342,Chicago,41.886575,-87.61705,Near East Side,IL,Cook County,0
+178,403343,Chicago,41.873965,-87.629153,Printers Row,IL,Cook County,0
+179,403344,Chicago,41.866472,-87.628962,Dearborn Park,IL,Cook County,0
+180,403345,Chicago,41.842015,-87.620545,South Commons,IL,Cook County,0
+181,403346,Chicago,41.834712,-87.62037,The Gap,IL,Cook County,0
+182,403347,Chicago,41.827314,-87.628635,Stateway Gardens,IL,Cook County,0
+183,403348,Chicago,41.83295,-87.607245,Groveland Park,IL,Cook County,0
+184,403349,Chicago,41.827547,-87.612129,Ida B. Wells - Darrow Homes,IL,Cook County,0
+185,403350,Chicago,41.809081,-87.628807,The Robert Taylor Homes,IL,Cook County,0
+186,403351,Chicago,41.813223,-87.595609,North Kenwood,IL,Cook County,0
+187,403352,Chicago,41.794051,-87.582101,East Hyde Park,IL,Cook County,0
+188,403353,Chicago,41.779287,-87.610654,West Woodlawn,IL,Cook County,0
+189,403354,Chicago,41.769751,-87.578834,Jackson Park Highlands,IL,Cook County,0
+190,403355,Chicago,41.777471,-87.617148,Parkway Gardens,IL,Cook County,0
+191,403356,Chicago,41.769037,-87.618357,Park Manor,IL,Cook County,0
+192,403357,Chicago,41.743965,-87.631154,West Chatham,IL,Cook County,0
+193,403358,Chicago,41.740426,-87.593002,Marynook,IL,Cook County,0
+194,403359,Chicago,41.744792,-87.540484,The Bush,IL,Cook County,0
+195,403360,Chicago,41.743957,-87.601143,East Chatham,IL,Cook County,0
+196,403361,Chicago,41.72906,-87.619439,West Chesterfield,IL,Cook County,0
+197,403362,Chicago,41.725813,-87.629087,Princeton Park,IL,Cook County,0
+198,403363,Chicago,41.726675,-87.575472,Pill Hill,IL,Cook County,0
+199,403364,Chicago,41.752457,-87.636957,Winneconna Parkway,IL,Cook County,0
+200,403365,Chicago,41.738929,-87.716773,Parkview,IL,Cook County,0
+201,403366,Chicago,41.736956,-87.707007,Marycrest,IL,Cook County,0
+202,403367,Chicago,41.743922,-87.731492,Scottsdale,IL,Cook County,0
+203,403368,Chicago,41.747295,-87.680385,Beverly View,IL,Cook County,0
+204,403369,Chicago,41.686338,-87.715212,Mount Greenwood Heights,IL,Cook County,0
+205,403370,Chicago,41.709658,-87.716,Tally's Corner,IL,Cook County,0
+206,403371,Chicago,41.688117,-87.688329,Kennedy Park,IL,Cook County,0
+207,403372,Chicago,41.680882,-87.683525,Beverly Woods,IL,Cook County,0
+208,403373,Chicago,41.695364,-87.688563,West Morgan Park,IL,Cook County,0
+209,403374,Chicago,41.70635,-87.688849,West Beverly,IL,Cook County,0
+210,403375,Chicago,41.706618,-87.662983,East Beverly,IL,Cook County,0
+211,403376,Chicago,41.714245,-87.643133,Longwood Manor,IL,Cook County,0
+212,403377,Chicago,41.707434,-87.633177,Fernwood,IL,Cook County,0
+213,403378,Chicago,41.72686,-87.650466,Brainerd,IL,Cook County,0
+214,403379,Chicago,41.71097,-87.611983,Rosemoor,IL,Cook County,0
+215,403380,Chicago,41.654658,-87.60853,Golden Gate,IL,Cook County,0
+216,403381,Chicago,41.654662,-87.615961,Eden Green,IL,Cook County,0
+217,403382,Chicago,41.711582,-87.60046,London Towne,IL,Cook County,0
+218,403383,Chicago,41.718482,-87.597566,Cottage Grove Heights,IL,Cook County,0
+219,403384,Chicago,41.701337,-87.564526,Trumbull Park,IL,Cook County,0
+220,403385,Chicago,41.652941,-87.530157,Harbour Point Estates,IL,Cook County,0
+221,403386,Chicago,41.69072,-87.590365,Lake Calumet,IL,Cook County,0
+222,403387,Chicago,41.672231,-87.532414,Wolf Lake,IL,Cook County,0
+223,403388,Chicago,41.695759,-87.544453,Calumet River,IL,Cook County,0
+224,403389,Chicago,41.648898,-87.532163,Powder Horn Lake,IL,Cook County,0
+225,403390,Chicago,41.652403,-87.576424,Little Calumet River,IL,Cook County,0
+226,403560,Chicago,41.860963,-87.694489,Douglas Park,IL,Cook County,0
