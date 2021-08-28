@@ -201,15 +201,14 @@ class MashvisorResponse():
                 self.__response = json.loads(response.text)
             except (ConnectionError, Timeout, TooManyRedirects) as e:
                 print(e)
+
+            self.__dataframe = self.json_to_dataframe()
         
         # Get saved data:
         else:
-            json_filename = self.ARCHIVE_FILES[endpoint_tag].replace(".csv", ".json")
-
-            with open(os.path.join(self.url, json_filename)) as f:
-                self.__response = json.load(f)
-
-        self.__dataframe = self.json_to_dataframe()
+            data_filename    = self.ARCHIVE_FILES[endpoint_tag]
+            self.__response  = "DEBUG"
+            self.__dataframe = pd.read_csv(Path(os.path.join(self.url, data_filename)))
 
         # Save dataframe to csv.
         if self.save_csv and isinstance(self.dataframe, pd.DataFrame):
@@ -267,7 +266,10 @@ class MashvisorResponse():
         return df_merged
 
     def print_json_dump(self):
-        print(json.dumps(self.response, indent=4, sort_keys=True))
+        if self.response != "DEBUG":
+            print(json.dumps(self.response, indent=4, sort_keys=True))
+        else:
+            print("DEBUG")
     
     def to_csv(self, mode="a", suffix=""):
         if not isinstance(self.dataframe, pd.DataFrame):
