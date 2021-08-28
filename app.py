@@ -4,19 +4,23 @@ state = "Illinois"
 city  = "Chicago"
 
 top_neighborhood_data = MashvisorResponse(
+    run_type="TOP-NEIGHBORHOOD",
     state=state,
     city=city,
-    run_type="TOP-NEIGHBORHOOD",
+    page=1,
     items=10,
-    debug=True)
+    debug=True,
+)
 
 for id in top_neighborhood_data.dataframe["id"]:
-    overview_neighborhood_data = MashvisorResponse(
-        run_type="OVERVIEW-NEIGHBORHOOD",
+    historical_neighborhood_data = MashvisorResponse(
+        run_type="HISTORICAL-NEIGHBORHOOD-PERFORMANCE",
         state=state,
         id=id,
-        save_csv="a",
-        debug=False)
-
+        year=19,
+        debug=False,
+    )
+    
+    historical_neighborhood_data.to_csv(mode="a", suffix="auto")
 
 breakpoint()

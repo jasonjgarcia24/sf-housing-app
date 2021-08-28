@@ -1,6 +1,8 @@
 import os
 import json
 import re
+import calendar
+import itertools
 
 import pandas as pd
 
@@ -16,40 +18,50 @@ class MashvisorResponse():
     VERSION  = "v1.1"
 
     ARCHIVE_FILES = {
-        "CITY-INVESTMENT-PERFORMANCE": "city-investment-performance_data.csv",
-        "LIST-NEIGHBORHOOD":           "list-neighborhood_data.csv",
-        "TOP-NEIGHBORHOOD":            "top-neighborhood_data.csv",
-        "OVERVIEW-NEIGHBORHOOD":       "overview-neighborhood_data.csv",
+        "CITY-INVESTMENT-PERFORMANCE":         "city-investment-performance_data.csv",
+        "LIST-NEIGHBORHOOD":                   "list-neighborhood_data.csv",
+        "TOP-NEIGHBORHOOD":                    "top-neighborhood_data.csv",
+        "OVERVIEW-NEIGHBORHOOD":               "overview-neighborhood_data.csv",
+        "HISTORICAL-NEIGHBORHOOD-PERFORMANCE": "historical-neighborhood-performance_data.csv",
     }
 
     DOMAIN_SWITCH = {
-        "CITY-INVESTMENT-PERFORMANCE": lambda obj: f"https://api.mashvisor.com/{obj.VERSION}/client/city/investment/{obj.state}/{obj.city}",
-        "LIST-NEIGHBORHOOD":           lambda obj: f"https://api.mashvisor.com/{obj.VERSION}/client/city/neighborhoods/{obj.state}/{obj.city}",
-        "TOP-NEIGHBORHOOD":            lambda obj: f"https://api.mashvisor.com/{obj.VERSION}/client/trends/neighborhoods",
-        "OVERVIEW-NEIGHBORHOOD":       lambda obj: f"https://api.mashvisor.com/{obj.VERSION}/client/neighborhood/{obj.id}/bar",
-        "DEBUG":                       lambda _:   os.path.join(os.getcwd(), "data"),
+        "CITY-INVESTMENT-PERFORMANCE":         lambda obj: f"https://api.mashvisor.com/{obj.VERSION}/client/city/investment/{obj.state}/{obj.city}",
+        "LIST-NEIGHBORHOOD":                   lambda obj: f"https://api.mashvisor.com/{obj.VERSION}/client/city/neighborhoods/{obj.state}/{obj.city}",
+        "TOP-NEIGHBORHOOD":                    lambda obj: f"https://api.mashvisor.com/{obj.VERSION}/client/trends/neighborhoods",
+        "OVERVIEW-NEIGHBORHOOD":               lambda obj: f"https://api.mashvisor.com/{obj.VERSION}/client/neighborhood/{obj.id}/bar",
+        "HISTORICAL-NEIGHBORHOOD-PERFORMANCE": lambda obj: f"https://api.mashvisor.com/{obj.VERSION}/client/neighborhood/{obj.id}/historical/traditional",
+        "DEBUG":                               lambda _:   os.path.join(os.getcwd(), "data"),
     }
 
     SAVE_CSV_OPTIONS = [None, "a", "w"]
+    MONTH_OPTIONS    = [None] + list(itertools.chain.from_iterable(
+        [{f"{m}", f"{m:02}", calendar.month_name[m], calendar.month_abbr[m]} for m in range(1, 13)]
+    ))
 
-    def __init__(self, run_type: str, state=None, city=None, id=None, page=1, items=10, save_csv=None, debug=False):
+    def __init__(self, run_type: str, state=None, city=None, id=None, page=1, items=10,
+                 month=None, year=None, beds=None, save_csv=None, debug=False):
 
         self.__catch_value_error(run_type, "run_type", self.DOMAIN_SWITCH.keys())
         self.__catch_value_error(save_csv, "save_csv", self.SAVE_CSV_OPTIONS)
+        self.__catch_value_error(month,    "month",    self.MONTH_OPTIONS)
 
-        self.__run_type = run_type.upper()
+        self.__run_type = run_type
         self.__state    = state
         self.__city     = city
         self.__id       = id
         self.__page     = page
         self.__items    = items
+        self.__year     = year
+        self.__month    = month
+        self.__beds     = beds
         self.save_csv   = save_csv
         self.debug      = debug
         self.__request()
 
     @property
     def run_type(self):
-        return self.__run_type
+        return self.__run_type.upper()
 
     @property
     def state(self):
@@ -73,7 +85,7 @@ class MashvisorResponse():
 
     @property
     def id(self):
-        return self.__id
+        return str(self.__id)
 
     @property
     def page(self):
@@ -82,6 +94,45 @@ class MashvisorResponse():
     @property
     def items(self):
         return self.__items
+
+    @property
+    def date(self):
+        year  = self.__year
+        month = self.__month
+
+        if year and len(str(year)) == 2:
+            this_year = datetime.today().strftime("%y")
+            year      = f"19{year}" if int(year) > int(this_year) else f"20{year}"
+
+        if year and month:
+            return f"{year}-{month}"
+        elif year:
+            return f"{year}-Jan"
+        elif month:
+            return f"1970-{month}"
+        else:
+            return None
+
+    @property
+    def month(self):
+        if self.date and self.__month:
+            return pd.to_datetime(self.date, infer_datetime_format=True).strftime("%m").lstrip("0")
+        else:
+            return None
+
+    @property
+    def year(self):
+        if self.date and self.__year:
+            return pd.to_datetime(self.date, infer_datetime_format=True).strftime("%Y")
+        else:
+            return None
+
+    @property
+    def beds(self):
+        if self.__beds:
+            return int(self.__beds)
+        else:
+            return None
 
     @property
     def url(self):
@@ -109,40 +160,44 @@ class MashvisorResponse():
         # information.
 
         print(f"SOURCE   : {self.url}")
-        print(f"RUN TYPE : {self.run_type.upper()}")
+        print(f"RUN TYPE : {self.run_type}")
         print(f"DEBUG    : {self.debug}")
 
-        # Set request credentials and params
-        load_dotenv()
-        mashvisor_api_key = os.getenv("MASHVISOR_API_KEY")
-
-        headers = {
-            "x-api-key":  mashvisor_api_key,
-        }
-
-        parameters = {
-            "state": self.state,
-            "city":  self.city,
-            "page":  self.page,
-            "items": self.items,
-        }
-        
-        # Set url request
-        session_get_switch = {
-            "LIST-NEIGHBORHOOD":     lambda s: s.get(self.url),
-            "TOP-NEIGHBORHOOD":      lambda s: s.get(self.url, params={k: parameters[k] for k in ["state", "city", "page", "items"]}),
-            "OVERVIEW-NEIGHBORHOOD": lambda s: s.get(self.url, params={k: parameters[k] for k in ["state",]}),
-        }
-
-        endpoint_tag = self.run_type
+        endpoint_tag = self.run_type     
 
         # Get Mashvisor Response:
         if not self.debug:
+            # Set request credentials and params
+            load_dotenv()
+            mashvisor_api_key = os.getenv("MASHVISOR_API_KEY")
+
+            headers = {
+                "x-api-key":  mashvisor_api_key,
+            }
+
+            parameters = {
+                "state": self.state,
+                "city":  self.city,
+                "page":  self.page,
+                "items": self.items,
+                "month": self.month,
+                "year":  self.year,
+                "beds":  self.beds,
+            }
+            
+            # Set url request
+            params_switch = {
+                "LIST-NEIGHBORHOOD":                   {},
+                "TOP-NEIGHBORHOOD":                    {k: parameters[k] for k in ["state", "city", "page", "items"]},
+                "OVERVIEW-NEIGHBORHOOD":               {k: parameters[k] for k in ["state",]},
+                "HISTORICAL-NEIGHBORHOOD-PERFORMANCE": {k: parameters[k] for k in ["state", "month", "year", "beds"] if parameters[k]},
+            }
+            params  = params_switch.get(endpoint_tag)
             session = Session()
             session.headers.update(headers)
 
             try:
-                response = session_get_switch.get(endpoint_tag)(session)
+                response = session.get(self.url, params=params) if params else session.get(self.url)
                 self.__response = json.loads(response.text)
             except (ConnectionError, Timeout, TooManyRedirects) as e:
                 print(e)
@@ -168,12 +223,22 @@ class MashvisorResponse():
             return None
 
         switch_set_df = {
-            "LIST-NEIGHBORHOOD":     lambda r: pd.DataFrame(r["content"]["results"]),
-            "TOP-NEIGHBORHOOD":      lambda r: pd.json_normalize(r["content"]["neighborhoods"]).drop(columns=["description"]),
-            "OVERVIEW-NEIGHBORHOOD": lambda r: pd.json_normalize(r["content"]).drop(columns=["description"]),
+            "LIST-NEIGHBORHOOD":                   lambda r: pd.DataFrame(r["content"]["results"]),
+            "TOP-NEIGHBORHOOD":                    lambda r: pd.json_normalize(r["content"]["neighborhoods"]).drop(columns=["description"]),
+            "OVERVIEW-NEIGHBORHOOD":               lambda r: pd.json_normalize(r["content"]).drop(columns=["description"]),
+            "HISTORICAL-NEIGHBORHOOD-PERFORMANCE": lambda r: self.__parse_json_with_metadata(r["content"], "months", "averages"),
         }
 
         return switch_set_df.get(endpoint_tag)(response)
+
+    @staticmethod
+    def __parse_json_with_metadata(response, record: str, meta: str):
+        df      = pd.json_normalize(response, record_path=record, meta=meta, record_prefix=f"{record}.")
+        meta_df = pd.json_normalize(df[meta]).add_prefix(f"{meta}.")
+
+        df.drop(columns=[meta,], inplace=True)
+
+        return pd.concat([df, meta_df], axis=1)
 
     @staticmethod
     def __date_relative_to_explicit(date_str):
