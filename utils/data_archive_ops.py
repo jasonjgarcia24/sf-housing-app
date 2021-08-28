@@ -7,6 +7,8 @@ from pathlib import Path
 
 
 FIND_COLS_FUNC = lambda df, sub: [col for col in df.columns if sub in col]
+NORMALIZE_FUNC = lambda df, col: (df[col] - df[col].mean()) / df[col].std()
+POS_SLIDE_FUNC = lambda df, col: df[col] + abs(df[col]) if df[col].min() < 0 or df[col].std() != 0.0 else df[col]
 
 
 def get_neighborhood_df():
@@ -42,21 +44,26 @@ def get_neighborhood_df():
     return df
 
 
-def group_neighborhood_df(df, col):
+def group_df(df, sort_col):
     val_cols     = ["zero_room_value", "one_room_value", "two_room_value", "three_room_value", "four_room_value"]
     avg_val_cols = ["averages.one_room_value", "averages.two_room_value",
-                    "averages.three_room_value", "averages.four_room_value"]
+                    "averages.three_room_value", "averages.four_room_value",
+                    "airbnb_rental.rental_income"]
 
     for col in val_cols + avg_val_cols:
         df[col] = df[col].apply(float)
         
-    df_by_month = df.groupby(col).sum()
-    breakpoint()
+    df_by = df.groupby(sort_col).mean()
 
     for col in val_cols + avg_val_cols:
-        df_by_month[col] = df_by_month[col].apply(lambda x: x / 1000)
+        df_by[col] = df_by[col].apply(lambda x: x / 1000)
 
-    return df_by_month
+    df_by["price_per_sqft"] = df_by["price_per_sqft"].apply(lambda x: x / 100)
+    df_by["median_price"]   = df_by["median_price"].apply(lambda x: x / 100000)
+    df_by["walkscore"]      = NORMALIZE_FUNC(df_by, "walkscore")
+    df_by["walkscore"]      = POS_SLIDE_FUNC(df_by, "walkscore")
+
+    return df_by, val_cols, avg_val_cols
 
 
 def __remove_duplicate_columns(df):
