@@ -1,8 +1,11 @@
-from housing.mashvisor_client import MashvisorResponse
+from housing.mashvisor_client import MashvisorResponse, MashvisorDataFrameParser
 
 state = "Illinois"
 city  = "Chicago"
 
+mash = MashvisorDataFrameParser()
+
+breakpoint()
 top_neighborhood_data = MashvisorResponse(
     run_type="TOP-NEIGHBORHOOD",
     state=state,

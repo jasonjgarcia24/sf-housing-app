@@ -1,3 +1,6 @@
+import sys
+sys.path.append(".")
+
 import os
 import json
 import re
@@ -14,16 +17,223 @@ from pathlib  import Path
 from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 
 
+ARCHIVE_PATH = os.path.join(os.getcwd(), "data")
+
+ARCHIVE_FILES = {
+    "CITY-INVESTMENT-PERFORMANCE":         "city-investment-performance_data.csv",
+    "LIST-NEIGHBORHOOD":                   "list-neighborhood_data.csv",
+    "TOP-NEIGHBORHOOD":                    "top-neighborhood_data.csv",
+    "OVERVIEW-NEIGHBORHOOD":               "overview-neighborhood_data.csv",
+    "HISTORICAL-NEIGHBORHOOD-PERFORMANCE": "historical-neighborhood-performance_data.csv",
+}
+
+def config():    
+    normalize_func = lambda ds: (ds - ds.mean()) / ds.std()
+    pos_slide_func = lambda ds: ds + abs(ds) if ds.min() < 0 or ds.std() != 0.0 else ds
+
+    outargs = {}
+
+    outargs["us-states"] = {
+        "alabama": "AL",
+        "alaska": "AK",
+        "american samoa": "AS",
+        "arizona": "AZ",
+        "arkansas": "AR",
+        "california": "CA",
+        "colorado": "CO",
+        "connecticut": "CT",
+        "delaware": "DE",
+        "district of columbia": "DC",
+        "florida": "FL",
+        "georgia": "GA",
+        "guam": "GU",
+        "hawaii": "HI",
+        "idaho": "ID",
+        "illinois": "IL",
+        "indiana": "IN",
+        "iowa": "IA",
+        "kansas": "KS",
+        "kentucky": "KY",
+        "louisiana": "LA",
+        "maine": "ME",
+        "maryland": "MD",
+        "massachusetts": "MA",
+        "michigan": "MI",
+        "minnesota": "MN",
+        "mississippi": "MS",
+        "missouri": "MO",
+        "montana": "MT",
+        "nebraska": "NE",
+        "nevada": "NV",
+        "new hampshire": "NH",
+        "new jersey": "NJ",
+        "new mexico": "NM",
+        "new york": "NY",
+        "north carolina": "NC",
+        "north dakota": "ND",
+        "northern mariana islands":"MP",
+        "ohio": "OH",
+        "oklahoma": "OK",
+        "oregon": "OR",
+        "pennsylvania": "PA",
+        "puerto rico": "PR",
+        "rhode island": "RI",
+        "south carolina": "SC",
+        "south dakota": "SD",
+        "tennessee": "TN",
+        "texas": "TX",
+        "utah": "UT",
+        "vermont": "VT",
+        "virgin islands": "VI",
+        "virginia": "VA",
+        "washington": "WA",
+        "west virginia": "WV",
+        "wisconsin": "WI",
+        "wyoming": "WY"
+    }
+
+    outargs["scale-definition"] = {
+        "year":                                               None,
+        "month":                                              None,
+        "zero_room_value":                                    1 / 1000,
+        "one_room_value":                                     1 / 1000,
+        "two_room_value":                                     1 / 1000,
+        "three_room_value":                                   1 / 1000,
+        "four_room_value":                                    1 / 1000,
+        "averages.zero_room_value":                           1 / 1000,
+        "averages.one_room_value":                            1 / 1000,
+        "averages.two_room_value":                            1 / 1000,
+        "averages.three_room_value":                          1 / 1000,
+        "averages.four_room_value":                           1 / 1000,
+        "id":                                                 None,
+        "city":                                               None,
+        "latitude":                                           None,
+        "longitude":                                          None,
+        "name":                                               None,
+        "state":                                              None,
+        "county":                                             None,
+        "is_village":                                         None,
+        "occupancy":                                          None,
+        "total_listing":                                      None,
+        "airbnb_listings":                                    None,
+        "single_home_value":                                  1 / 100000,
+        "single_home_value_formatted":                        None,
+        "mashMeter":                                          1 / 10,
+        "description":                                        None,
+        "image":                                              None,
+        "walkscore":                                          1 / 100,
+        "num_of_properties":                                  1 / 100,
+        "num_of_airbnb_properties":                           1 / 100,
+        "num_of_traditional_properties":                      1 / 100,
+        "median_price":                                       1 / 100000,
+        "price_per_sqft":                                     1 / 100,
+        "mashMeterStars":                                     None,
+        "avg_occupancy":                                      None,
+        "strategy":                                           None,
+        "airbnb_rental.roi":                                  None,
+        "airbnb_rental.cap_rate":                             None,
+        "airbnb_rental.rental_income":                        1 / 1000,
+        "airbnb_rental.rental_income_change":                 None,
+        "airbnb_rental.rental_income_change_percentage":      None,
+        "airbnb_rental.night_price":                          1 / 100,
+        "airbnb_rental.occupancy":                            None,
+        "airbnb_rental.occupancy_change":                     None,
+        "airbnb_rental.occupancy_change_percentage":          None,
+        "airbnb_rental.insights.bedrooms.slope":              None,
+        "airbnb_rental.insights.bedrooms.RSquare":            None,
+        "airbnb_rental.insights.price.slope":                 None,
+        "airbnb_rental.insights.price.RSquare":               None,
+        "airbnb_rental.insights.stars_rate.slope":            None,
+        "airbnb_rental.insights.stars_rate.RSquare":          None,
+        "airbnb_rental.insights.bathrooms.slope":             None,
+        "airbnb_rental.insights.bathrooms.RSquare":           None,
+        "airbnb_rental.insights.beds.slope":                  None,
+        "airbnb_rental.insights.beds.RSquare":                None,
+        "airbnb_rental.insights.reviews_count.slope":         None,
+        "airbnb_rental.insights.reviews_count.RSquare":       None,
+        "traditional_rental.roi":                             None,
+        "traditional_rental.cap_rate":                        None,
+        "traditional_rental.rental_income":                   1 / 1000,
+        "traditional_rental.rental_income_change":            None,
+        "traditional_rental.rental_income_change_percentage": None,
+        "traditional_rental.night_price":                     1 / 100,
+        "traditional_rental.occupancy":                       None,
+        "traditional_rental.occupancy_change":                None,
+    }
+
+    outargs["scale-function"] = {
+        "year":                                               lambda ds: ds * outargs["scale-definition"]["year"],
+        "month":                                              lambda ds: ds * outargs["scale-definition"]["month"],
+        "zero_room_value":                                    lambda ds: ds * outargs["scale-definition"]["zero_room_value"],
+        "one_room_value":                                     lambda ds: ds * outargs["scale-definition"]["one_room_value"],
+        "two_room_value":                                     lambda ds: ds * outargs["scale-definition"]["two_room_value"],
+        "three_room_value":                                   lambda ds: ds * outargs["scale-definition"]["three_room_value"],
+        "four_room_value":                                    lambda ds: ds * outargs["scale-definition"]["four_room_value"],
+        "averages.zero_room_value":                           lambda ds: ds * outargs["scale-definition"]["averages.zero_room_value"],
+        "averages.one_room_value":                            lambda ds: ds * outargs["scale-definition"]["averages.one_room_value"],
+        "averages.two_room_value":                            lambda ds: ds * outargs["scale-definition"]["averages.two_room_value"],
+        "averages.three_room_value":                          lambda ds: ds * outargs["scale-definition"]["averages.three_room_value"],
+        "averages.four_room_value":                           lambda ds: ds * outargs["scale-definition"]["averages.four_room_value"],
+        "id":                                                 lambda ds: ds * outargs["scale-definition"]["id"],
+        "city":                                               lambda ds: ds * outargs["scale-definition"]["city"],
+        "latitude":                                           lambda ds: ds * outargs["scale-definition"]["latitude"],
+        "longitude":                                          lambda ds: ds * outargs["scale-definition"]["longitude"],
+        "name":                                               lambda ds: ds * outargs["scale-definition"]["name"],
+        "state":                                              lambda ds: ds * outargs["scale-definition"]["state"],
+        "county":                                             lambda ds: ds * outargs["scale-definition"]["county"],
+        "is_village":                                         lambda ds: ds * outargs["scale-definition"]["is_village"],
+        "occupancy":                                          lambda ds: ds * outargs["scale-definition"]["occupancy"],
+        "total_listing":                                      lambda ds: ds * outargs["scale-definition"]["total_listing"],
+        "airbnb_listings":                                    lambda ds: ds * outargs["scale-definition"]["airbnb_listings"],
+        "single_home_value":                                  lambda ds: ds * outargs["scale-definition"]["single_home_value"],
+        "single_home_value_formatted":                        lambda ds: ds * outargs["scale-definition"]["single_home_value_formatted"],
+        "mashMeter":                                          lambda ds: ds * outargs["scale-definition"]["mashMeter"],
+        "description":                                        lambda ds: ds * outargs["scale-definition"]["description"],
+        "image":                                              lambda ds: ds * outargs["scale-definition"]["image"],
+        "walkscore":                                          lambda ds: pos_slide_func(normalize_func(ds * outargs["scale-definition"]["walkscore"])),
+        "num_of_properties":                                  lambda ds: ds * outargs["scale-definition"]["num_of_properties"],
+        "num_of_airbnb_properties":                           lambda ds: ds * outargs["scale-definition"]["num_of_airbnb_properties"],
+        "num_of_traditional_properties":                      lambda ds: ds * outargs["scale-definition"]["num_of_traditional_properties"],
+        "median_price":                                       lambda ds: ds * outargs["scale-definition"]["median_price"],
+        "price_per_sqft":                                     lambda ds: ds * outargs["scale-definition"]["price_per_sqft"],
+        "mashMeterStars":                                     lambda ds: ds * outargs["scale-definition"]["mashMeterStars"],
+        "avg_occupancy":                                      lambda ds: ds * outargs["scale-definition"]["avg_occupancy"],
+        "strategy":                                           lambda ds: ds * outargs["scale-definition"]["strategy"],
+        "airbnb_rental.roi":                                  lambda ds: ds * outargs["scale-definition"]["airbnb_rental.roi"],
+        "airbnb_rental.cap_rate":                             lambda ds: ds * outargs["scale-definition"]["airbnb_rental.cap_rate"],
+        "airbnb_rental.rental_income":                        lambda ds: ds * outargs["scale-definition"]["airbnb_rental.rental_income"],
+        "airbnb_rental.rental_income_change":                 lambda ds: ds * outargs["scale-definition"]["airbnb_rental.rental_income_change"],
+        "airbnb_rental.rental_income_change_percentage":      lambda ds: ds * outargs["scale-definition"]["airbnb_rental.rental_income_change_percentage"],
+        "airbnb_rental.night_price":                          lambda ds: ds * outargs["scale-definition"]["airbnb_rental.night_price"],
+        "airbnb_rental.occupancy":                            lambda ds: ds * outargs["scale-definition"]["airbnb_rental.occupancy"],
+        "airbnb_rental.occupancy_change":                     lambda ds: ds * outargs["scale-definition"]["airbnb_rental.occupancy_change"],
+        "airbnb_rental.occupancy_change_percentage":          lambda ds: ds * outargs["scale-definition"]["airbnb_rental.occupancy_change_percentage"],
+        "airbnb_rental.insights.bedrooms.slope":              lambda ds: ds * outargs["scale-definition"]["airbnb_rental.insights.bedrooms.slope"],
+        "airbnb_rental.insights.bedrooms.RSquare":            lambda ds: ds * outargs["scale-definition"]["airbnb_rental.insights.bedrooms.RSquare"],
+        "airbnb_rental.insights.price.slope":                 lambda ds: ds * outargs["scale-definition"]["airbnb_rental.insights.price.slope"],
+        "airbnb_rental.insights.price.RSquare":               lambda ds: ds * outargs["scale-definition"]["airbnb_rental.insights.price.RSquare"],
+        "airbnb_rental.insights.stars_rate.slope":            lambda ds: ds * outargs["scale-definition"]["airbnb_rental.insights.stars_rate.slope"],
+        "airbnb_rental.insights.stars_rate.RSquare":          lambda ds: ds * outargs["scale-definition"]["airbnb_rental.insights.stars_rate.RSquare"],
+        "airbnb_rental.insights.bathrooms.slope":             lambda ds: ds * outargs["scale-definition"]["airbnb_rental.insights.bathrooms.slope"],
+        "airbnb_rental.insights.bathrooms.RSquare":           lambda ds: ds * outargs["scale-definition"]["airbnb_rental.insights.bathrooms.RSquare"],
+        "airbnb_rental.insights.beds.slope":                  lambda ds: ds * outargs["scale-definition"]["airbnb_rental.insights.beds.slope"],
+        "airbnb_rental.insights.beds.RSquare":                lambda ds: ds * outargs["scale-definition"]["airbnb_rental.insights.beds.RSquare"],
+        "airbnb_rental.insights.reviews_count.slope":         lambda ds: ds * outargs["scale-definition"]["airbnb_rental.insights.reviews_count.slope"],
+        "airbnb_rental.insights.reviews_count.RSquare":       lambda ds: ds * outargs["scale-definition"]["airbnb_rental.insights.reviews_count.RSquare"],
+        "traditional_rental.roi":                             lambda ds: ds * outargs["scale-definition"]["traditional_rental.roi"],
+        "traditional_rental.cap_rate":                        lambda ds: ds * outargs["scale-definition"]["traditional_rental.cap_rate"],
+        "traditional_rental.rental_income":                   lambda ds: ds * outargs["scale-definition"]["traditional_rental.rental_income"],
+        "traditional_rental.rental_income_change":            lambda ds: ds * outargs["scale-definition"]["traditional_rental.rental_income_change"],
+        "traditional_rental.rental_income_change_percentage": lambda ds: ds * outargs["scale-definition"]["traditional_rental.rental_income_change_percentage"],
+        "traditional_rental.night_price":                     lambda ds: ds * outargs["scale-definition"]["traditional_rental.night_price"],
+        "traditional_rental.occupancy":                       lambda ds: ds * outargs["scale-definition"]["traditional_rental.occupancy"],
+        "traditional_rental.occupancy_change":                lambda ds: ds * outargs["scale-definition"]["traditional_rental.occupancy_change"],
+    }
+
+    return outargs
+
 class MashvisorResponse():
     VERSION  = "v1.1"
-
-    ARCHIVE_FILES = {
-        "CITY-INVESTMENT-PERFORMANCE":         "city-investment-performance_data.csv",
-        "LIST-NEIGHBORHOOD":                   "list-neighborhood_data.csv",
-        "TOP-NEIGHBORHOOD":                    "top-neighborhood_data.csv",
-        "OVERVIEW-NEIGHBORHOOD":               "overview-neighborhood_data.csv",
-        "HISTORICAL-NEIGHBORHOOD-PERFORMANCE": "historical-neighborhood-performance_data.csv",
-    }
 
     DOMAIN_SWITCH = {
         "CITY-INVESTMENT-PERFORMANCE":         lambda obj: f"https://api.mashvisor.com/{obj.VERSION}/client/city/investment/{obj.state}/{obj.city}",
@@ -31,7 +241,7 @@ class MashvisorResponse():
         "TOP-NEIGHBORHOOD":                    lambda obj: f"https://api.mashvisor.com/{obj.VERSION}/client/trends/neighborhoods",
         "OVERVIEW-NEIGHBORHOOD":               lambda obj: f"https://api.mashvisor.com/{obj.VERSION}/client/neighborhood/{obj.id}/bar",
         "HISTORICAL-NEIGHBORHOOD-PERFORMANCE": lambda obj: f"https://api.mashvisor.com/{obj.VERSION}/client/neighborhood/{obj.id}/historical/traditional",
-        "DEBUG":                               lambda _:   os.path.join(os.getcwd(), "data"),
+        "DEBUG":                               lambda _:   ARCHIVE_PATH,
     }
 
     SAVE_CSV_OPTIONS = [None, "a", "w"]
@@ -172,7 +382,7 @@ class MashvisorResponse():
             mashvisor_api_key = os.getenv("MASHVISOR_API_KEY")
 
             headers = {
-                "x-api-key":  mashvisor_api_key,
+                "ds-api-key":  mashvisor_api_key,
             }
 
             parameters = {
@@ -206,7 +416,7 @@ class MashvisorResponse():
         
         # Get saved data:
         else:
-            data_filename    = self.ARCHIVE_FILES[endpoint_tag]
+            data_filename    = ARCHIVE_FILES[endpoint_tag]
             self.__response  = "DEBUG"
             self.__dataframe = pd.read_csv(Path(os.path.join(self.url, data_filename)))
 
@@ -239,25 +449,6 @@ class MashvisorResponse():
 
         return pd.concat([df, meta_df], axis=1)
 
-    @staticmethod
-    def __date_relative_to_explicit(date_str):
-        if "last" in date_str:
-            span  = re.match("last([0-9]+)days", date_str)
-            span  = span.groups()[0]
-            dates = list(pd.date_range(end=datetime.today(), periods=int(span)-1))
-            dates = [d.strftime("%Y-%m-%d") for d in dates]
-        elif re.fullmatch("[0-9]+-[0-9]+", str):
-            s, e  = str.split("-")
-            s = pd.to_datetime(s, format="%m%d%Y")
-            e = pd.to_datetime(e, format="%m%d%Y")
-
-            dates = pd.date_range(start=s, end=e, freq="D")
-            dates = [d.strftime("%Y-%m-%d") for d in dates] 
-        elif date_str == "today":
-            dates = datetime.today().date().strftime("%Y-%m-%d")
-
-        return dates
-
     def merge_df_responses(self, filename):
         df_new    = self.dataframe
         df_prev   = pd.read_csv(filename)
@@ -280,7 +471,7 @@ class MashvisorResponse():
         # Set to data archive domain: os.path.join(os.getcwd(), "data")
         endpoint_tag = self.run_type
         domain       = self.DOMAIN_SWITCH.get("DEBUG")(self)
-        endpoint     = self.ARCHIVE_FILES[endpoint_tag]
+        endpoint     = ARCHIVE_FILES[endpoint_tag]
 
         # Modify endpoints to include suffix and date if mode == "w".
         today         = "_" + datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -310,71 +501,85 @@ class MashvisorResponse():
                              f"'{var}' is not valid.")
 
     @staticmethod
-    def config():
-        outargs = {}
-
-        outargs["us-states"] = {
-            'alabama': 'AL',
-            'alaska': 'AK',
-            'american samoa': 'AS',
-            'arizona': 'AZ',
-            'arkansas': 'AR',
-            'california': 'CA',
-            'colorado': 'CO',
-            'connecticut': 'CT',
-            'delaware': 'DE',
-            'district of columbia': 'DC',
-            'florida': 'FL',
-            'georgia': 'GA',
-            'guam': 'GU',
-            'hawaii': 'HI',
-            'idaho': 'ID',
-            'illinois': 'IL',
-            'indiana': 'IN',
-            'iowa': 'IA',
-            'kansas': 'KS',
-            'kentucky': 'KY',
-            'louisiana': 'LA',
-            'maine': 'ME',
-            'maryland': 'MD',
-            'massachusetts': 'MA',
-            'michigan': 'MI',
-            'minnesota': 'MN',
-            'mississippi': 'MS',
-            'missouri': 'MO',
-            'montana': 'MT',
-            'nebraska': 'NE',
-            'nevada': 'NV',
-            'new hampshire': 'NH',
-            'new jersey': 'NJ',
-            'new mexico': 'NM',
-            'new york': 'NY',
-            'north carolina': 'NC',
-            'north dakota': 'ND',
-            'northern mariana islands':'MP',
-            'ohio': 'OH',
-            'oklahoma': 'OK',
-            'oregon': 'OR',
-            'pennsylvania': 'PA',
-            'puerto rico': 'PR',
-            'rhode island': 'RI',
-            'south carolina': 'SC',
-            'south dakota': 'SD',
-            'tennessee': 'TN',
-            'texas': 'TX',
-            'utah': 'UT',
-            'vermont': 'VT',
-            'virgin islands': 'VI',
-            'virginia': 'VA',
-            'washington': 'WA',
-            'west virginia': 'WV',
-            'wisconsin': 'WI',
-            'wyoming': 'WY'
-        }
-
-        return outargs
-
-    @staticmethod
     def get_us_states_opts():
-        return MashvisorResponse.config()["us-states"]
+        return config()["us-states"].keys()
+
+class MashvisorNeighborhoodParser():
+    FIND_COLS_FUNC = lambda obj, sub:   [col for col in obj.__columns if sub in col]
+
+    def __init__(self):
+        self.df        = self.__get_df()
+        self.__columns = self.df.columns.to_list()
+        
+        self.__drop_columns()
+        self.__clean_column_names()
+        self.__scale_columns()
+        self.__set_neighborhood_df()
+
+    @property
+    def dropped_columns(self):
+        duplicate_cols = [self.FIND_COLS_FUNC(sub) for sub in [".list_neighborhood", ".top_neighborhood", ".overview_neighborhood"]]
+        duplicate_cols = [col for sub in duplicate_cols for col in sub]
+
+        cols_to_remove = [
+            "investment_rentals.airbnb_rental.roi",
+            "investment_rentals.airbnb_rental.cap_rate",
+            "investment_rentals.airbnb_rental.rental_income",
+            "investment_rentals.traditional_rental.roi",
+            "investment_rentals.traditional_rental.cap_rate",
+            "investment_rentals.traditional_rental.rental_income",
+            "single_home_value_formatted",
+        ]
+
+        return duplicate_cols + cols_to_remove
+
+    @property
+    def cleaned_column_dict(self):
+        months_cols        = self.FIND_COLS_FUNC("months")
+        cleaned_month_cols = {col: col.replace("months.", "") for col in months_cols}
+
+        return cleaned_month_cols
+
+    def __get_df(self):
+        historical_neighborhood_df = pd.read_csv(os.path.join(ARCHIVE_PATH, ARCHIVE_FILES["HISTORICAL-NEIGHBORHOOD-PERFORMANCE"]))
+        list_neighborhood_df       = pd.read_csv(os.path.join(ARCHIVE_PATH, ARCHIVE_FILES["LIST-NEIGHBORHOOD"]))
+        top_neighborhood_df        = pd.read_csv(os.path.join(ARCHIVE_PATH, ARCHIVE_FILES["TOP-NEIGHBORHOOD"]))
+        overview_neighborhood_df   = pd.read_csv(os.path.join(ARCHIVE_PATH, ARCHIVE_FILES["OVERVIEW-NEIGHBORHOOD"]))
+
+        df = historical_neighborhood_df.join(
+            list_neighborhood_df.set_index("id"),
+            on="id",
+            how="left",
+            rsuffix=".list_neighborhood"
+        )
+
+        df = df.join(
+            top_neighborhood_df.set_index("id"),
+            on="id",
+            how="left",
+            rsuffix=".top_neighborhood"
+        )
+
+        df = df.join(
+            overview_neighborhood_df.set_index("id"),
+            on="id",
+            how="left",
+            rsuffix=".overview_neighborhood"
+        )
+
+        return df
+
+    def __drop_columns(self):
+        self.df.drop(columns=self.dropped_columns, inplace=True)
+
+    def __clean_column_names(self):
+        self.df.rename(columns=self.cleaned_column_dict, inplace=True)
+
+    def __scale_columns(self):
+        for col in self.df.columns:
+            if config()["scale-definition"][col]:
+                self.df[col] = config()["scale-function"][col](self.df[col])
+
+    def __set_neighborhood_df(self):
+        self.df = self.df.groupby("name").mean()
 
