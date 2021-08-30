@@ -3,13 +3,6 @@ import re
 import pandas as pd
 
 
-UNIT_FUNC                  = lambda u:    (f" ({u})" if u else "")
-SINGLE_WORD_FUNC           = lambda s, u: f"{s[0].upper()}{s[1:]}" + UNIT_FUNC(u)
-MULTI_WORD_FUNC            = lambda s, u: " ".join([f"{x[0].upper()}{x[1:]}" for x in s.split("_")]) + UNIT_FUNC(u)
-SINGLE_HDR_MULTI_WORD_FUNC = lambda s, u: " ".join([f"{x[0].upper()}{x[1:]}" for x in re.split("_{1}|\.{1}|_+", s)]) + UNIT_FUNC(u)
-MULTI_HDR_MULTI_WORD_FUNC  = lambda s, u: " ".join([f"{x[0].upper()}{x[1:]}" for x in re.split("_{1}|\.{2}|_+|\.{1}", s)]) + UNIT_FUNC(u)
-EXPLICIT_FUNC              = lambda s, u: s + UNIT_FUNC(u)
-
 def us_states(state: str):
     switch_us_states = {
         "alabama": "AL",
@@ -223,6 +216,13 @@ def scale_function(ds: pd.Series):
 
 
 def get_label(col: str, unit=""):
+    UNIT_FUNC                  = lambda u:    (f" ({u})" if u else "")
+    SINGLE_WORD_FUNC           = lambda s, u: f"{s[0].upper()}{s[1:]}" + UNIT_FUNC(u)
+    MULTI_WORD_FUNC            = lambda s, u: " ".join([f"{x[0].upper()}{x[1:]}" for x in s.split("_")]) + UNIT_FUNC(u)
+    SINGLE_HDR_MULTI_WORD_FUNC = lambda s, u: " ".join([f"{x[0].upper()}{x[1:]}" for x in re.split("_{1}|\.{1}|_+", s)]) + UNIT_FUNC(u)
+    MULTI_HDR_MULTI_WORD_FUNC  = lambda s, u: " ".join([f"{x[0].upper()}{x[1:]}" for x in re.split("_{1}|\.{2}|_+|\.{1}", s)]) + UNIT_FUNC(u)
+    EXPLICIT_FUNC              = lambda s, u: s + UNIT_FUNC(u)
+
     switch_label = {
         "year":                                               lambda s, u: SINGLE_WORD_FUNC(s, u),
         "month":                                              lambda s, u: SINGLE_WORD_FUNC(s, u),
