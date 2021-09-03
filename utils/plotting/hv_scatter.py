@@ -3,14 +3,14 @@ import hvplot.pandas
 import pandas as pd
 
 
-def quad_scatter(
+def hv_quad_scatter(
         df: pd.DataFrame, x: str, y: list, c: str, s: str,
         xlabel=None, ylabel=None, clabel=None, title="Quad Scatter",
         hover_cols=[], height=450, width=450, rot=45, scale=20,
     ):
 
     def single_scatter(_y, _ylabel):
-        _fig = df.hvplot.scatter(
+        trace = df.hvplot.scatter(
             x=x,
             y=_y,
             c=c,
@@ -24,7 +24,7 @@ def quad_scatter(
             width=width,
         )
 
-        return _fig
+        return trace
     
     fig = (
         single_scatter(y[0], ylabel[0]) + \

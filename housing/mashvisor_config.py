@@ -2,6 +2,8 @@ import re
 
 import pandas as pd
 
+from utils.string_ops import line_break_split
+
 
 def us_states(state: str):
     switch_us_states = {
@@ -215,13 +217,13 @@ def scale_function(ds: pd.Series):
     return switch_scale_function.get(ds.name)(ds)
 
 
-def get_label(col: str, unit=""):
-    UNIT_FUNC                  = lambda u:    (f" ({u})" if u else "")
-    SINGLE_WORD_FUNC           = lambda s, u: f"{s[0].upper()}{s[1:]}" + UNIT_FUNC(u)
-    MULTI_WORD_FUNC            = lambda s, u: " ".join([f"{x[0].upper()}{x[1:]}" for x in s.split("_")]) + UNIT_FUNC(u)
-    SINGLE_HDR_MULTI_WORD_FUNC = lambda s, u: " ".join([f"{x[0].upper()}{x[1:]}" for x in re.split("_{1}|\.{1}|_+", s)]) + UNIT_FUNC(u)
-    MULTI_HDR_MULTI_WORD_FUNC  = lambda s, u: " ".join([f"{x[0].upper()}{x[1:]}" for x in re.split("_{1}|\.{2}|_+|\.{1}", s)]) + UNIT_FUNC(u)
-    EXPLICIT_FUNC              = lambda s, u: s + UNIT_FUNC(u)
+def get_label(col: str, unit="", width=None):
+    UNIT_FUNC                  = lambda u:    line_break_split(f" ({u})" if u else "", width)
+    SINGLE_WORD_FUNC           = lambda s, u: line_break_split(f"{s[0].upper()}{s[1:]}" + UNIT_FUNC(u), width)
+    MULTI_WORD_FUNC            = lambda s, u: line_break_split(" ".join([f"{x[0].upper()}{x[1:]}" for x in s.split("_")]) + UNIT_FUNC(u), width)
+    SINGLE_HDR_MULTI_WORD_FUNC = lambda s, u: line_break_split(" ".join([f"{x[0].upper()}{x[1:]}" for x in re.split("_{1}|\.{1}|_+", s)]) + UNIT_FUNC(u), width)
+    MULTI_HDR_MULTI_WORD_FUNC  = lambda s, u: line_break_split(" ".join([f"{x[0].upper()}{x[1:]}" for x in re.split("_{1}|\.{2}|_+|\.{1}", s)]) + UNIT_FUNC(u), width)
+    EXPLICIT_FUNC              = lambda s, u: line_break_split(s + UNIT_FUNC(u), width)
 
     switch_label = {
         "year":                                               lambda s, u: SINGLE_WORD_FUNC(s, u),
