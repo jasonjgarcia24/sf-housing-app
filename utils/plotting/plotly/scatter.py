@@ -30,15 +30,15 @@ def quad(mash: MashvisorNeighborhoodParser, x: str, y: list, c: str, s: str):
     sizescale = 10 ** (int(math.log(size.max(), 10)) - 1)
     
     # Organize the data points for the scatter plot
-    fig = make_subplots(
+    fig = go.FigureWidget(make_subplots(
         rows=2,
         cols=2,
         vertical_spacing=0.06,
         horizontal_spacing=0.12,
         shared_xaxes=True
-    )
+    ))
 
-    def single_scatter(_x, _y):
+    def single_scatter(_x, _y, _r, _c):
         y_values = mash.df[_y]
         x_values = mash.df.index if _x == mash.df.index.name else mash.df[_x]
         s_values = size / sizescale
@@ -57,7 +57,7 @@ def quad(mash: MashvisorNeighborhoodParser, x: str, y: list, c: str, s: str):
                     tickvals=tickvals,
                     outlinewidth=0,
                     tickformat=".1f",
-                ),
+                ) if row == col == 2 else dict(),
             ),            
             customdata=customdata,
             hovertemplate=hovertemplate,
@@ -65,9 +65,10 @@ def quad(mash: MashvisorNeighborhoodParser, x: str, y: list, c: str, s: str):
 
         return trace
 
+    # Add the scatter plots to its corresponding subplot
     for ydata, row, col in zip(y, [1, 1, 2, 2], [1, 2, 1, 2]):
         fig.add_trace(
-            single_scatter(xdata, ydata),
+            single_scatter(xdata, ydata, row, col),
             row=row,
             col=col,
         )
@@ -75,6 +76,7 @@ def quad(mash: MashvisorNeighborhoodParser, x: str, y: list, c: str, s: str):
         fig.update_xaxes(title_text=get_label(xdata), row=row, col=col, tickangle=45)
         fig.update_yaxes(title_text=get_label(ydata), row=row, col=col)
     
+    # Customize the figure layout
     fig.update_layout(
         title=f"<b>{get_label(c)} and {get_label(s)}</b><br>by {get_label(x)}",
         width=900,
@@ -83,10 +85,10 @@ def quad(mash: MashvisorNeighborhoodParser, x: str, y: list, c: str, s: str):
             accesstoken=get_mapbox_api_token(),
         ),
         margin=go.layout.Margin(
-            l=40,
-            r=100,
-            b=40,
-            t=80,
+            l=45,
+            r=150,
+            b=50,
+            t=100,
             pad=4,
         ),
         showlegend=False,

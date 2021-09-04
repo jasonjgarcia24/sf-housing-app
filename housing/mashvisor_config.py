@@ -228,7 +228,7 @@ def set_acronym(label):
     return " ".join([acronym_dict.get(s) if s in acronym_dict.keys() else s for s in label.split()])
 
 
-def get_label(col: str, unit="", width=None):
+def get_label(col: str, unit="", width=None, return_type="value"):
     UNIT_FUNC                  = lambda u:    line_break_split(f" ({u})" if u else "", width)
     SINGLE_WORD_FUNC           = lambda s, u: line_break_split(set_acronym(f"{s[0].upper()}{s[1:]}" + UNIT_FUNC(u)), width)
     MULTI_WORD_FUNC            = lambda s, u: line_break_split(set_acronym(" ".join([f"{x[0].upper()}{x[1:]}" for x in s.split("_")]) + UNIT_FUNC(u)), width)
@@ -305,5 +305,11 @@ def get_label(col: str, unit="", width=None):
         "traditional_rental.occupancy_change":                lambda s, u: SINGLE_HDR_MULTI_WORD_FUNC(s, u),
     }
 
-    return switch_label.get(col)(col, unit)
+    if return_type == "value":
+        return switch_label.get(col)(col, unit)
+    elif return_type == "key":
+        for key, val in switch_label.items():
+            if val(key, "") in col:
+                break
+        return key
    

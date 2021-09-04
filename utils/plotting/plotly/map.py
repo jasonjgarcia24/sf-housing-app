@@ -33,6 +33,7 @@ def pvr(mash: MashvisorNeighborhoodParser):
     s_values = size / sizescale
     c_values = mash.df["traditional_rental.roi"]
 
+    # Add the scattermapbox trace to the figure
     fig.add_scattermapbox(
         lat=x_values,
         lon=y_values,
@@ -52,6 +53,7 @@ def pvr(mash: MashvisorNeighborhoodParser):
         hovertemplate=hovertemplate,
     )
 
+    # Customize the figure layout
     fig.update_layout(
         title="<b>Price/Sqaure Foot and Traditional Rental ROI</b><br>Chicago",
         width=900,

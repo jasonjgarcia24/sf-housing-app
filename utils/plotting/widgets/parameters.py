@@ -7,7 +7,6 @@ from ipywidgets import (
     Layout,
 )
 
-from .          import scatter
 from ipywidgets import interact, interactive_output
 from housing.mashvisor_config import get_label
 from housing.mashvisor_client import MashvisorNeighborhoodParser
@@ -36,7 +35,7 @@ def __dropdown_widget(cols, val, width="200px", gridarea="main"):
         layout=Layout(width=width, grid_area=gridarea),
     )
 
-    interactive_output(scatter.quad, controls={gridarea: dropdown})
+    # interactive_output(scatter.quad, controls={gridarea: dropdown})
     
     return dropdown
 
@@ -83,7 +82,7 @@ def __single_dropdown_grid(children,
     return grid
 
 
-def parameter_widgets(xdata: list, ydata: list, cdata: list, sdata: list, labels: list):
+def dynamic_4d(xdata: list, ydata: list, cdata: list, sdata: list, labels: list):
     yaxis, xaxis, caxis, saxis, parent = {}, {}, {}, {}, {}
 
     yaxis["label"] = __label_widget("Y-Axis Settings")
