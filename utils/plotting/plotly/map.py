@@ -21,16 +21,12 @@ def pvr(mash: MashvisorNeighborhoodParser):
     tickvals       = get_colorbar_ticks(mash.df)
     customdata, hovertemplate = get_hover_data(mash)
 
-    # Set the size parameters for the scatter mapbox
-    size      = mash.df["price_per_sqft"] / mash.scales("price_per_sqft")["value"]
-    sizescale = 10 ** (int(math.log(size.max(), 10)) - 1)
-
     # Organize the data points for the scatter mapbox
     fig = go.Figure()
 
     x_values = mash.df["latitude"]
     y_values = mash.df["longitude"]
-    s_values = size / sizescale
+    s_values = mash.base("price_per_sqft")
     c_values = mash.df["traditional_rental.roi"]
 
     # Add the scattermapbox trace to the figure

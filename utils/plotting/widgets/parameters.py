@@ -1,3 +1,7 @@
+import numbers
+
+import plotly.graph_objects as go
+
 from ipywidgets import (
     Button,
     Dropdown,
@@ -7,7 +11,7 @@ from ipywidgets import (
     Layout,
 )
 
-from ipywidgets import interact, interactive_output
+from utils.plotting.colorbar  import get_ticks
 from housing.mashvisor_config import get_label
 from housing.mashvisor_client import MashvisorNeighborhoodParser
 
@@ -80,9 +84,13 @@ def __single_dropdown_grid(children,
         ))
     
     return grid
+    
 
+def dynamic_4d(
+    plt: go.FigureWidget, mash: MashvisorNeighborhoodParser,
+    xdata: list, ydata: list, cdata: list, sdata: list, labels: list
+    ):    
 
-def dynamic_4d(xdata: list, ydata: list, cdata: list, sdata: list, labels: list):
     yaxis, xaxis, caxis, saxis, parent = {}, {}, {}, {}, {}
 
     yaxis["label"] = __label_widget("Y-Axis Settings")
@@ -194,6 +202,97 @@ def dynamic_4d(xdata: list, ydata: list, cdata: list, sdata: list, labels: list)
     parent["children"]["yaxis"] = yaxis
     parent["children"]["caxis"] = caxis
     parent["children"]["saxis"] = saxis
+    
+    def cdropdown_callback(change):        
+        xdata = get_label(xaxis["dropdown"].value, return_type="key")
+        sdata = get_label(saxis["dropdown"].value, return_type="key")
+        cdata = get_label(change.new, return_type="key")
+        title = title=f"<b>{get_label(cdata)} (c) and {get_label(sdata)} (s)</b><br>by {get_label(xdata)} (x)"
+        
+        c_values       = mash.df[cdata]
+        colorbar_title = f"{get_label(cdata, unit=mash.scales(cdata)['text'], width=15)}"
+        tickvals       = get_ticks(mash.df[cdata])
+        
+        with plt.batch_update():
+            for i in range(4):
+                plt.layout.title.text    = title
+                plt.data[i].marker.color = c_values
+                
+                if i == 3:
+                    plt.data[i].marker.colorbar.title    = colorbar_title
+                    plt.data[i].marker.colorbar.tickvals = tickvals
+    
+    def sdropdown_callback(change):    
+        xdata = get_label(xaxis["dropdown"].value, return_type="key")
+        cdata = get_label(caxis["dropdown"].value, return_type="key")
+        sdata = get_label(change.new, return_type="key")
+        title = title=f"<b>{get_label(cdata)} (c) and {get_label(sdata)} (s)</b><br>by {get_label(xdata)} (x)"
+        
+        s_values  = mash.base(sdata)
+        
+        with plt.batch_update():
+            for i in range(4):
+                plt.layout.title.text   = title
+                plt.data[i].marker.size = s_values
+    
+    def xdropdown_callback(change):
+        xdata = get_label(change.new, return_type="key")
+        cdata = get_label(caxis["dropdown"].value, return_type="key")
+        sdata = get_label(saxis["dropdown"].value, return_type="key")
+        title = title=f"<b>{get_label(cdata)} (c) and {get_label(sdata)} (s)</b><br>by {get_label(xdata)} (x)"
+        
+        x_values = mash.df.index if xdata == mash.df.index.name else mash.df[xdata]
+        
+        with plt.batch_update():
+            for i in range(4):
+                plt.layout.title.text = title
+                plt.data[i].x         = x_values
+                
+                idx    = str(i+1) if i > 0 else ""
+                xtitle = get_label(xdata, unit=mash.scales(xdata)['text'], width=35)
+                plt.layout[f"xaxis{idx}"].title     = xtitle if i > 1 else ""
+                plt.layout[f"xaxis{idx}"].tickangle = 0 if isinstance(x_values[0], numbers.Number) else 45
+    
+    def ydropdown_callback(change):
+        ydata = get_label(change.new, return_type="key")
 
+        gridarea = change["owner"].layout.grid_area
+        y_values = mash.df[ydata]
+        
+        with plt.batch_update():
+            for i, (row, col) in enumerate(zip([1, 1, 2, 2], [1, 2, 1, 2])):
+                if f"y_r{row}c{col}" == gridarea:
+                    plt.data[i].y = y_values
+
+                    idx    = str(i+1) if i > 0 else ""
+                    ytitle = get_label(ydata, unit=mash.scales(ydata)['text'], width=20)
+                    plt.layout[f"yaxis{idx}"].title = ytitle
+                    break
+
+    def xbutton_restore_callback(change):
+        xaxis["dropdown"].value = get_label(xdata)
+
+    def cbutton_restore_callback(change):
+        caxis["dropdown"].value = get_label(cdata)
+
+    def sbutton_restore_callback(change):
+        saxis["dropdown"].value = get_label(sdata)
+
+    def ybutton_restore_callback(change):
+        for i in range(len(ydata)):
+            yaxis["dropdown"][i].value = get_label(ydata[i])
+                    
+    xaxis["dropdown"].observe(xdropdown_callback, names="value")
+    caxis["dropdown"].observe(cdropdown_callback, names="value")
+    saxis["dropdown"].observe(sdropdown_callback, names="value")
+    
+    for i in range(len(ydata)):
+        yaxis["dropdown"][i].observe(ydropdown_callback, names="value")
+
+    xaxis["button"].on_click(xbutton_restore_callback)
+    saxis["button"].on_click(sbutton_restore_callback)
+    caxis["button"].on_click(cbutton_restore_callback)
+    yaxis["button"].on_click(ybutton_restore_callback)
+        
     return parent
     

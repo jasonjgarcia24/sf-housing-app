@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 
 from plotly.subplots import make_subplots
 from housing.mashvisor_config import get_label
+from utils.plotting.colorbar import get_ticks
 from housing.mashvisor_client import MashvisorNeighborhoodParser
 
 
@@ -19,15 +20,11 @@ def quad(mash: MashvisorNeighborhoodParser, x: str, y: list, c: str, s: str):
 
     # Identify if x is the index
     xdata = mash.df.index.name if x == mash.df.index.name else x
-
+    
     # Set the colorbar ticks and custom data for the scatter plot
     colorbar_title = f"{get_label(c, unit=mash.scales(c)['text'], width=15)}"
-    tickvals       = get_colorbar_ticks(mash.df[c])
+    tickvals       = get_ticks(mash.df[c])
     customdata, hovertemplate = get_hover_data(mash)
-
-    # Set the size parameters for the scatter plot
-    size      = mash.df[c] / mash.scales(c)["value"]
-    sizescale = 10 ** (int(math.log(size.max(), 10)) - 1)
     
     # Organize the data points for the scatter plot
     fig = go.FigureWidget(make_subplots(
@@ -41,7 +38,7 @@ def quad(mash: MashvisorNeighborhoodParser, x: str, y: list, c: str, s: str):
     def single_scatter(_x, _y, _r, _c):
         y_values = mash.df[_y]
         x_values = mash.df.index if _x == mash.df.index.name else mash.df[_x]
-        s_values = size / sizescale
+        s_values = mash.base(s)
         c_values = mash.df[c]
 
         trace = go.Scatter(
@@ -58,7 +55,7 @@ def quad(mash: MashvisorNeighborhoodParser, x: str, y: list, c: str, s: str):
                     outlinewidth=0,
                     tickformat=".1f",
                 ) if row == col == 2 else dict(),
-            ),            
+            ),
             customdata=customdata,
             hovertemplate=hovertemplate,
         )
@@ -72,13 +69,17 @@ def quad(mash: MashvisorNeighborhoodParser, x: str, y: list, c: str, s: str):
             row=row,
             col=col,
         )
+
+        # Set the x and y axis labels
+        xtitle = get_label(xdata, unit=mash.scales(xdata)['text'], width=35) if row == 2 else ""
+        ytitle = get_label(ydata, unit=mash.scales(ydata)['text'], width=35)
         
-        fig.update_xaxes(title_text=get_label(xdata), row=row, col=col, tickangle=45)
-        fig.update_yaxes(title_text=get_label(ydata), row=row, col=col)
+        fig.update_xaxes(title_text=xtitle, row=row, col=col, tickangle=45)
+        fig.update_yaxes(title_text=ytitle, row=row, col=col)
     
     # Customize the figure layout
     fig.update_layout(
-        title=f"<b>{get_label(c)} and {get_label(s)}</b><br>by {get_label(x)}",
+        title=f"<b>{get_label(c)} (c) and {get_label(s)} (s)</b><br>by {get_label(x)} (x)",
         width=900,
         height=750,
         mapbox=dict(
@@ -99,14 +100,6 @@ def quad(mash: MashvisorNeighborhoodParser, x: str, y: list, c: str, s: str):
 def get_mapbox_api_token():
     load_dotenv()
     return os.getenv("mapbox_api_access_token".upper())
-
-
-def get_colorbar_ticks(ds: pd.Series):    
-    tickvals = [ds.min(), ds.max()]
-    tickstep = (tickvals[-1]-tickvals[0]) / 5
-    tickvals = list(frange(*tickvals, tickstep)) + [tickvals[-1]]
-
-    return tickvals
 
 
 def get_hover_data(mash: MashvisorNeighborhoodParser):

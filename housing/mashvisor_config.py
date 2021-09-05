@@ -1,4 +1,6 @@
 import re
+import math
+import numbers
 
 import pandas as pd
 
@@ -98,7 +100,7 @@ def scale_definition(col: str):
         "mashMeter":                                          {"value": 1 / 10,     "text": "Tens"},
         "description":                                        {"value": 1,          "text": ""},
         "image":                                              {"value": 1,          "text": ""},
-        "walkscore":                                          {"value": 1 / 100,    "text": "Hundreds"},
+        "walkscore":                                          {"value": 1 / 100,    "text": "Hundreds - +Slide"},
         "num_of_properties":                                  {"value": 1 / 100,    "text": "Hundreds"},
         "num_of_airbnb_properties":                           {"value": 1 / 100,    "text": "Hundreds"},
         "num_of_traditional_properties":                      {"value": 1 / 100,    "text": "Hundreds"},
@@ -110,41 +112,50 @@ def scale_definition(col: str):
         "airbnb_rental.roi":                                  {"value": 1,          "text": ""},
         "airbnb_rental.cap_rate":                             {"value": 1,          "text": ""},
         "airbnb_rental.rental_income":                        {"value": 1 / 1000,   "text": "Thousands"},
-        "airbnb_rental.rental_income_change":                 {"value": 1,          "text": ""},
-        "airbnb_rental.rental_income_change_percentage":      {"value": 1,          "text": ""},
+        "airbnb_rental.rental_income_change":                 {"value": 1,          "text": "Categorized"},
+        "airbnb_rental.rental_income_change_percentage":      {"value": 1,          "text": "+Slide"},
         "airbnb_rental.night_price":                          {"value": 1 / 100,    "text": "Hundreds"},
         "airbnb_rental.occupancy":                            {"value": 1,          "text": ""},
-        "airbnb_rental.occupancy_change":                     {"value": 1,          "text": ""},
-        "airbnb_rental.occupancy_change_percentage":          {"value": 1,          "text": ""},
-        "airbnb_rental.insights.bedrooms.slope":              {"value": 1,          "text": ""},
-        "airbnb_rental.insights.bedrooms.RSquare":            {"value": 1,          "text": ""},
-        "airbnb_rental.insights.price.slope":                 {"value": 1,          "text": ""},
-        "airbnb_rental.insights.price.RSquare":               {"value": 1,          "text": ""},
-        "airbnb_rental.insights.stars_rate.slope":            {"value": 1,          "text": ""},
-        "airbnb_rental.insights.stars_rate.RSquare":          {"value": 1,          "text": ""},
-        "airbnb_rental.insights.bathrooms.slope":             {"value": 1,          "text": ""},
-        "airbnb_rental.insights.bathrooms.RSquare":           {"value": 1,          "text": ""},
-        "airbnb_rental.insights.beds.slope":                  {"value": 1,          "text": ""},
-        "airbnb_rental.insights.beds.RSquare":                {"value": 1,          "text": ""},
-        "airbnb_rental.insights.reviews_count.slope":         {"value": 1,          "text": ""},
-        "airbnb_rental.insights.reviews_count.RSquare":       {"value": 1,          "text": ""},
+        "airbnb_rental.occupancy_change":                     {"value": 1,          "text": "Categorized"},
+        "airbnb_rental.occupancy_change_percentage":          {"value": 1,          "text": "+Slide"},
+        "airbnb_rental.insights.bedrooms.slope":              {"value": 1,          "text": "+Slide"},
+        "airbnb_rental.insights.bedrooms.RSquare":            {"value": 1,          "text": "+Slide"},
+        "airbnb_rental.insights.price.slope":                 {"value": 1,          "text": "+Slide"},
+        "airbnb_rental.insights.price.RSquare":               {"value": 1,          "text": "+Slide"},
+        "airbnb_rental.insights.stars_rate.slope":            {"value": 1,          "text": "+Slide"},
+        "airbnb_rental.insights.stars_rate.RSquare":          {"value": 1,          "text": "+Slide"},
+        "airbnb_rental.insights.bathrooms.slope":             {"value": 1,          "text": "+Slide"},
+        "airbnb_rental.insights.bathrooms.RSquare":           {"value": 1,          "text": "+Slide"},
+        "airbnb_rental.insights.beds.slope":                  {"value": 1,          "text": "+Slide"},
+        "airbnb_rental.insights.beds.RSquare":                {"value": 1,          "text": "+Slide"},
+        "airbnb_rental.insights.reviews_count.slope":         {"value": 1,          "text": "+Slide"},
+        "airbnb_rental.insights.reviews_count.RSquare":       {"value": 1,          "text": "+Slide"},
         "traditional_rental.roi":                             {"value": 1,          "text": ""},
         "traditional_rental.cap_rate":                        {"value": 1,          "text": ""},
         "traditional_rental.rental_income":                   {"value": 1 / 1000,   "text": "Thousands"},
-        "traditional_rental.rental_income_change":            {"value": 1,          "text": ""},
-        "traditional_rental.rental_income_change_percentage": {"value": 1,          "text": ""},
+        "traditional_rental.rental_income_change":            {"value": 1,          "text": "Categorized"},
+        "traditional_rental.rental_income_change_percentage": {"value": 1,          "text": "+Slide"},
         "traditional_rental.night_price":                     {"value": 1 / 100,    "text": "Hundreds"},
         "traditional_rental.occupancy":                       {"value": 1,          "text": ""},
-        "traditional_rental.occupancy_change":                {"value": 1,          "text": ""},
+        "traditional_rental.occupancy_change":                {"value": 1,          "text": "Categorized"},
     }
 
     return switch_scale_definition.get(col)
 
 
-def scale_function(ds: pd.Series):
-    normalize_func = lambda ds: (ds - ds.mean()) / ds.std()
-    pos_slide_func = lambda ds: ds + abs(ds) if ds.min() < 0 or ds.std() != 0.0 else ds
+def normalize(ds: pd.Series):
+    return (ds - ds.mean()) / ds.std() if ds.std() != 0.0 else ds
 
+
+def pos_slide(ds: pd.Series):
+    return ds + abs(ds) if (ds.min() < 0 or ds.std() != 0.0) and isinstance(ds[0], numbers.Number) else ds
+
+
+def categorize(ds: pd.Series):
+    return pd.Categorical(ds).codes
+
+
+def scale_function(ds: pd.Series):
     switch_scale_function = {
         "year":                                               lambda ds: ds * scale_definition("year")["value"],
         "month":                                              lambda ds: ds * scale_definition("month")["value"],
@@ -174,7 +185,7 @@ def scale_function(ds: pd.Series):
         "mashMeter":                                          lambda ds: ds * scale_definition("mashMeter")["value"],
         "description":                                        lambda ds: ds * scale_definition("description")["value"],
         "image":                                              lambda ds: ds * scale_definition("image")["value"],
-        "walkscore":                                          lambda ds: pos_slide_func(normalize_func(ds * scale_definition("walkscore")["value"])),
+        "walkscore":                                          lambda ds: pos_slide(ds * scale_definition("walkscore")["value"]),
         "num_of_properties":                                  lambda ds: ds * scale_definition("num_of_properties")["value"],
         "num_of_airbnb_properties":                           lambda ds: ds * scale_definition("num_of_airbnb_properties")["value"],
         "num_of_traditional_properties":                      lambda ds: ds * scale_definition("num_of_traditional_properties")["value"],
@@ -186,32 +197,32 @@ def scale_function(ds: pd.Series):
         "airbnb_rental.roi":                                  lambda ds: ds * scale_definition("airbnb_rental.roi")["value"],
         "airbnb_rental.cap_rate":                             lambda ds: ds * scale_definition("airbnb_rental.cap_rate")["value"],
         "airbnb_rental.rental_income":                        lambda ds: ds * scale_definition("airbnb_rental.rental_income")["value"],
-        "airbnb_rental.rental_income_change":                 lambda ds: ds * scale_definition("airbnb_rental.rental_income_change")["value"],
-        "airbnb_rental.rental_income_change_percentage":      lambda ds: ds * scale_definition("airbnb_rental.rental_income_change_percentage")["value"],
+        "airbnb_rental.rental_income_change":                 lambda ds: pos_slide(categorize(ds * scale_definition("airbnb_rental.rental_income_change")["value"])),
+        "airbnb_rental.rental_income_change_percentage":      lambda ds: pos_slide(ds * scale_definition("airbnb_rental.rental_income_change_percentage")["value"]),
         "airbnb_rental.night_price":                          lambda ds: ds * scale_definition("airbnb_rental.night_price")["value"],
         "airbnb_rental.occupancy":                            lambda ds: ds * scale_definition("airbnb_rental.occupancy")["value"],
-        "airbnb_rental.occupancy_change":                     lambda ds: ds * scale_definition("airbnb_rental.occupancy_change")["value"],
-        "airbnb_rental.occupancy_change_percentage":          lambda ds: ds * scale_definition("airbnb_rental.occupancy_change_percentage")["value"],
-        "airbnb_rental.insights.bedrooms.slope":              lambda ds: ds * scale_definition("airbnb_rental.insights.bedrooms.slope")["value"],
-        "airbnb_rental.insights.bedrooms.RSquare":            lambda ds: ds * scale_definition("airbnb_rental.insights.bedrooms.RSquare")["value"],
-        "airbnb_rental.insights.price.slope":                 lambda ds: ds * scale_definition("airbnb_rental.insights.price.slope")["value"],
-        "airbnb_rental.insights.price.RSquare":               lambda ds: ds * scale_definition("airbnb_rental.insights.price.RSquare")["value"],
-        "airbnb_rental.insights.stars_rate.slope":            lambda ds: ds * scale_definition("airbnb_rental.insights.stars_rate.slope")["value"],
-        "airbnb_rental.insights.stars_rate.RSquare":          lambda ds: ds * scale_definition("airbnb_rental.insights.stars_rate.RSquare")["value"],
-        "airbnb_rental.insights.bathrooms.slope":             lambda ds: ds * scale_definition("airbnb_rental.insights.bathrooms.slope")["value"],
-        "airbnb_rental.insights.bathrooms.RSquare":           lambda ds: ds * scale_definition("airbnb_rental.insights.bathrooms.RSquare")["value"],
-        "airbnb_rental.insights.beds.slope":                  lambda ds: ds * scale_definition("airbnb_rental.insights.beds.slope")["value"],
-        "airbnb_rental.insights.beds.RSquare":                lambda ds: ds * scale_definition("airbnb_rental.insights.beds.RSquare")["value"],
-        "airbnb_rental.insights.reviews_count.slope":         lambda ds: ds * scale_definition("airbnb_rental.insights.reviews_count.slope")["value"],
-        "airbnb_rental.insights.reviews_count.RSquare":       lambda ds: ds * scale_definition("airbnb_rental.insights.reviews_count.RSquare")["value"],
+        "airbnb_rental.occupancy_change":                     lambda ds: pos_slide(categorize(ds * scale_definition("airbnb_rental.occupancy_change")["value"])),
+        "airbnb_rental.occupancy_change_percentage":          lambda ds: pos_slide(ds * scale_definition("airbnb_rental.occupancy_change_percentage")["value"]),
+        "airbnb_rental.insights.bedrooms.slope":              lambda ds: pos_slide(ds * scale_definition("airbnb_rental.insights.bedrooms.slope")["value"]),
+        "airbnb_rental.insights.bedrooms.RSquare":            lambda ds: pos_slide(ds * scale_definition("airbnb_rental.insights.bedrooms.RSquare")["value"]),
+        "airbnb_rental.insights.price.slope":                 lambda ds: pos_slide(ds * scale_definition("airbnb_rental.insights.price.slope")["value"]),
+        "airbnb_rental.insights.price.RSquare":               lambda ds: pos_slide(ds * scale_definition("airbnb_rental.insights.price.RSquare")["value"]),
+        "airbnb_rental.insights.stars_rate.slope":            lambda ds: pos_slide(ds * scale_definition("airbnb_rental.insights.stars_rate.slope")["value"]),
+        "airbnb_rental.insights.stars_rate.RSquare":          lambda ds: pos_slide(ds * scale_definition("airbnb_rental.insights.stars_rate.RSquare")["value"]),
+        "airbnb_rental.insights.bathrooms.slope":             lambda ds: pos_slide(ds * scale_definition("airbnb_rental.insights.bathrooms.slope")["value"]),
+        "airbnb_rental.insights.bathrooms.RSquare":           lambda ds: pos_slide(ds * scale_definition("airbnb_rental.insights.bathrooms.RSquare")["value"]),
+        "airbnb_rental.insights.beds.slope":                  lambda ds: pos_slide(ds * scale_definition("airbnb_rental.insights.beds.slope")["value"]),
+        "airbnb_rental.insights.beds.RSquare":                lambda ds: pos_slide(ds * scale_definition("airbnb_rental.insights.beds.RSquare")["value"]),
+        "airbnb_rental.insights.reviews_count.slope":         lambda ds: pos_slide(ds * scale_definition("airbnb_rental.insights.reviews_count.slope")["value"]),
+        "airbnb_rental.insights.reviews_count.RSquare":       lambda ds: pos_slide(ds * scale_definition("airbnb_rental.insights.reviews_count.RSquare")["value"]),
         "traditional_rental.roi":                             lambda ds: ds * scale_definition("traditional_rental.roi")["value"],
         "traditional_rental.cap_rate":                        lambda ds: ds * scale_definition("traditional_rental.cap_rate")["value"],
         "traditional_rental.rental_income":                   lambda ds: ds * scale_definition("traditional_rental.rental_income")["value"],
-        "traditional_rental.rental_income_change":            lambda ds: ds * scale_definition("traditional_rental.rental_income_change")["value"],
-        "traditional_rental.rental_income_change_percentage": lambda ds: ds * scale_definition("traditional_rental.rental_income_change_percentage")["value"],
+        "traditional_rental.rental_income_change":            lambda ds: pos_slide(categorize(ds * scale_definition("traditional_rental.rental_income_change")["value"])),
+        "traditional_rental.rental_income_change_percentage": lambda ds: pos_slide(ds * scale_definition("traditional_rental.rental_income_change_percentage")["value"]),
         "traditional_rental.night_price":                     lambda ds: ds * scale_definition("traditional_rental.night_price")["value"],
         "traditional_rental.occupancy":                       lambda ds: ds * scale_definition("traditional_rental.occupancy")["value"],
-        "traditional_rental.occupancy_change":                lambda ds: ds * scale_definition("traditional_rental.occupancy_change")["value"],
+        "traditional_rental.occupancy_change":                lambda ds: pos_slide(categorize(ds * scale_definition("traditional_rental.occupancy_change")["value"])),
     }
 
     return switch_scale_function.get(ds.name)(ds)
@@ -305,11 +316,26 @@ def get_label(col: str, unit="", width=None, return_type="value"):
         "traditional_rental.occupancy_change":                lambda s, u: SINGLE_HDR_MULTI_WORD_FUNC(s, u),
     }
 
+    label = None
+
     if return_type == "value":
-        return switch_label.get(col)(col, unit)
+        label = switch_label.get(col)(col, unit)
     elif return_type == "key":
         for key, val in switch_label.items():
-            if val(key, "") in col:
-                break
-        return key
-   
+            label = key if val(key, "") == col else label
+
+    return label
+
+
+def base_scale(df: pd.DataFrame, col: str, base=11):
+        data = df.index if col == df.index.name else df[col]
+        
+        if not isinstance(data[0], numbers.Number) or data.std() == 0.0:
+            return data
+
+        restored_data = data / scale_definition(col)["value"]
+        scale         = 10 ** (int(math.log(restored_data.max(), base)) - 1)
+        values        = restored_data / scale
+
+        return values
+

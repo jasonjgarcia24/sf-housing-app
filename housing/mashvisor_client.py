@@ -13,7 +13,7 @@ from dotenv   import load_dotenv
 from requests import Session
 from datetime import datetime
 from pathlib  import Path
-from .mashvisor_config import us_states, scale_definition, scale_function
+from .mashvisor_config import us_states, scale_definition, scale_function, base_scale
 
 from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 
@@ -336,6 +336,10 @@ class MashvisorNeighborhoodParser():
     def scales(self):
         return scale_definition
 
+    @property
+    def base(self):
+        return lambda col: base_scale(self.df, col)
+
     def __get_df(self):
         historical_neighborhood_df = pd.read_csv(os.path.join(ARCHIVE_PATH, ARCHIVE_FILES["HISTORICAL-NEIGHBORHOOD-PERFORMANCE"]))
         list_neighborhood_df       = pd.read_csv(os.path.join(ARCHIVE_PATH, ARCHIVE_FILES["LIST-NEIGHBORHOOD"]))
@@ -366,6 +370,7 @@ class MashvisorNeighborhoodParser():
         return df
 
     def __drop_columns(self):
+        self.df.dropna(axis="columns", how="all", inplace=True)
         self.df.drop(columns=self.dropped_columns, inplace=True)
 
     def __clean_column_names(self):
@@ -373,7 +378,7 @@ class MashvisorNeighborhoodParser():
 
     def __scale_columns(self):
         for col in self.df.columns:
-            if scale_definition(col)["value"] != 1:
+            if scale_definition(col)["text"]:
                 self.df[col] = scale_function(self.df[col])
 
     def __set_neighborhood_df(self):
